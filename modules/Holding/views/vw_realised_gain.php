@@ -15,7 +15,7 @@ ob_start();
 ?>
 <div class="dashboard">
     <div class="py-5">
-        <div class="container-fluid">
+        <div class="container-fluid holding holding-container">
             <?php $this->load->view("_vw_client_info", ['client_code' => $client_code, 'ifa_code' => $ifa_code]) ?>
             <div class="row mt-4">
                 <div class="col-md-12">

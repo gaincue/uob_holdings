@@ -9,180 +9,217 @@ $template = [];
  */
 ob_start();
 ?>
+
 <div class="py-2 collapse" id="portfolio_ut_prs">
-    <ul class="nav nav-pills">
-        <li class="nav-item"><a href="#" class="active nav-link" data-toggle="pill" data-target="#tabone">Holdings By Payment Method</a></li>
-        <li class="nav-item"><a href="#" class="nav-link" data-toggle="pill" data-target="#tabtwo">Holdings By Allocation</a></li>
-        <li class="nav-item"><a href="#" class="nav-link" data-toggle="pill" data-target="#tabthree">Holdings By Fund Currency</a></li>
-        <li class="nav-item"><a href="#" class="nav-link" data-toggle="pill" data-target="#tabfour">Pending Transactions</a></li>
-        <li class="nav-item"><a href="#" class="nav-link" data-toggle="pill" data-target="#tabfive">Historical Transactions</a></li>
-        <li class="nav-item"><a href="#" class="nav-link" data-toggle="pill" data-target="#tabsix">Fund Performance (Absolute Returns)</a></li>
-        <li class="nav-item"><a href="#" class="nav-link" data-toggle="pill" data-target="#tabseven">Fund Performance (Annualized Returns)</a></li>
+    <ul class="nav nav-pill holding--nav">
+        <li class="nav-item">
+            <a href="" class="nav-link active" data-toggle="pill" data-target="#tabone">
+                Current Holdings
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="" class="nav-link" data-toggle="pill" data-target="#tabfour">
+                Transactions
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="" class="nav-link" data-toggle="pill" data-target="#tabsix">
+                Fund Performance
+            </a>
+        </li>
     </ul>
+
     <div class="tab-content mt-2">
         <div class="tab-pane fade show active" id="tabone" role="tabpanel">
-            <div class="card">
-                <div class="card-header">
-                    <h6>Current holdings in this investment account</h6>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table" id="holding_payment_tbl" style="font-size:11px; width: 100%;">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Fund Name</th>
-                                    <th>Payment Method</th>
-                                    <th>Investment Date</th>
-                                    <th>Available Units</th>
-                                    <th>Weighted Average Cost (MYR)</th>
-                                    <th>Investment Amount (MYR)</th>
-                                    <th>NAV (MYR)</th>
-                                    <th>NAV Date</th>
-                                    <th>Current Value (MYR)</th>
-                                    <th>Percentage of Portfolio (%)</th>
-                                    <th>Profit (MYR)</th>
-                                    <th>Profit&nbsp; (%)</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                            <tfoot>
-                            </tfoot>
-                        </table>
+            <div class="holding--filter">
+                <span class="holding--label">Filter By</span>
+
+                <ul class="nav nav-pills">
+                    <li>
+                        <a class="holding--pill active" data-toggle="pill" data-target="#payment_method">
+                            Payment Method
+                        </a>
+                    </li>
+                    <li>
+                        <a class="holding--pill" data-toggle="pill" data-target="#allocation">
+                            Allocation
+                        </a>
+                    </li>
+                    <li>
+                        <a class="holding--pill" data-toggle="pill" data-target="#fund_currency">Fund
+                            Currency
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="payment_method" role="tabpanel">
+                    <div>
+                        <div class="table-responsive holding--negative-margin">
+                            <table class="table holding--table" id="holding_payment_tbl" style="width: 100%">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Fund Name</th>
+                                        <th>Payment Method</th>
+                                        <th>Investment Date</th>
+                                        <th>Available Units</th>
+                                        <th>Weighted Average Cost (MYR)</th>
+                                        <th>Investment Amount (MYR)</th>
+                                        <th>NAV (MYR)</th>
+                                        <th>NAV Date</th>
+                                        <th>Current Value (MYR)</th>
+                                        <th>Percentage of Portfolio (%)</th>
+                                        <th>Profit (MYR)</th>
+                                        <th>Profit&nbsp; (%)</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                                <tfoot>
+                                </tfoot>
+                            </table>
+                        </div>
+
+                        <div class="alert alert-warning" style="margin-top: 20px;">
+                            * The indicative price for foreign currency fund auto convert in MYR.
+                        </div>
                     </div>
 
-                    <div class="alert alert-warning" style="margin-top: 20px;">
-                        * The indicative price for foreign currency fund auto convert in MYR.
+                    <div class="holding--profit-loss">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h3 class="holding--title mb-3">Profit &amp; Loss (MYR) Since Inception</h3>
+                                <div class="holding--subtitle" id="loss_since_inspection_date"></div>
+                                <div class="mt-5">
+                                    <a class="holding--pill active" href="#" data-toggle="modal" id="portfolio_tracking" data-target="#modal_portfolio">Portfolio Tracking</a>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="table-responsive holding--negative-margin">
+                                    <table class="table holding--table">
+                                        <thead>
+                                            <tr>
+                                                <th>Item</th>
+                                                <th>Cash (MYR)</th>
+                                                <th>EPF Account 1 (MYR)</th>
+                                                <th>Total (MYR)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Cash Account (MYR)</td>
+                                                <td id="cur_valuation_cash" class="holding--success"></td>
+                                                <td id="cur_valuation_epf" class="holding--success"></td>
+                                                <td id="cur_valuation_total" class="holding--success"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Deposit (MYR)</td>
+                                                <td class="holding--danger">
+                                                    <a href="#" style="color:#dc3545" data-toggle="modal" data-target="#modal_deposit" id="deposit_cash"></a>
+                                                </td>
+                                                <td id="deposit_epf" class="holding--danger"></td>
+                                                <td id="deposit_total" class="holding--danger"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Fund Valuation (MYR)</td>
+                                                <td id="fund_valuation_cash" class="holding--success"></td>
+                                                <td id="fund_valuation_epf" class="holding--success"></td>
+                                                <td id="fund_valuation_total" class="holding--success"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Capital Outflow</td>
+                                                <td class="holding--success">
+                                                    <a href="#" data-toggle="modal" data-target="#modal_capital_outflow" id="outflow_cash"></a>
+                                                </td>
+                                                <td class="holding--success">
+                                                    <a href="#" data-toggle="modal" data-target="#modal_epf_outflow" id="outflow_epf"></a>
+                                                </td>
+                                                <td id="outflow_total" class="holding--success"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Pending (Withdrawal)</td>
+                                                <td id="pending_withdraw_cash" class="holding--success"></td>
+                                                <td id="pending_withdraw_epf" class="holding--success"></td>
+                                                <td id="pending_withdraw_total" class="holding--success"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Pending (Sell)</td>
+                                                <td id="pending_sell_cash" class="holding--success"></td>
+                                                <td id="pending_sell_epf" class="holding--success"></td>
+                                                <td id="pending_sell_total class=" holding--success""></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Pending (Buy)</td>
+                                                <td id="pending_buy_cash" class="holding--success"></td>
+                                                <td id="pending_buy_epf" class="holding--success"></td>
+                                                <td id="pending_buy_total" class="holding--success"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Accrued Interest</td>
+                                                <td id="interest_cash" class="holding--success"></td>
+                                                <td id="interest_epf" class="holding--success"></td>
+                                                <td id="interest_total" class="holding--success"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font-weight-bold">Profit &amp; Loss (MYR) Since Inception</td>
+                                                <td id="pnl_cash" class="holding--success font-weight-bold"></td>
+                                                <td id="pnl_epf" class="holding--success font-weight-bold"></td>
+                                                <td id="pnl_total" class="holding--success font-weight-bold"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
+                    <div style="margin-bottom: 80px"></div>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-header"> View Holdings by Payment Method</div>
-                <div class="card-body">
-                    <p>Profit &amp; Loss (MYR) Since Inception : </p>
-                    <div id="loss_since_inspection_date"></div>
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Cash</th>
-                                    <th>EPF Account 1</th>
-                                    <th>Total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="text-success">
-                                    <td>Cash Account (MYR)</td>
-                                    <td id="cur_valuation_cash"></td>
-                                    <td id="cur_valuation_epf"></td>
-                                    <td id="cur_valuation_total"></td>
-                                </tr>
-                                <tr class="text-danger">
-                                    <td>Deposit (MYR)</td>
-                                    <td>
-                                        <a href="#" style="color:#dc3545" data-toggle="modal" data-target="#modal_deposit" id="deposit_cash"></a>
-                                    </td>
-                                    <td id="deposit_epf"></td>
-                                    <td id="deposit_total"></td>
-                                </tr>
-                                <tr class="text-success">
-                                    <td>Fund Valuation (MYR)</td>
-                                    <td id="fund_valuation_cash"></td>
-                                    <td id="fund_valuation_epf"></td>
-                                    <td id="fund_valuation_total"></td>
-                                </tr>
-                                <tr class="text-success">
-                                    <td class="text-success">Capital Outflow</td>
-                                    <td>
-                                        <a href="#" data-toggle="modal" data-target="#modal_capital_outflow" id="outflow_cash"></a>
-                                    </td>
-                                    <td>
-                                        <a href="#" data-toggle="modal" data-target="#modal_epf_outflow" id="outflow_epf"></a>
-                                    </td>
-                                    <td id="outflow_total"></td>
-                                </tr>
-                                <tr class="text-success">
-                                    <td class="text-success">Pending (Withdrawal)</td>
-                                    <td id="pending_withdraw_cash"></td>
-                                    <td id="pending_withdraw_epf"></td>
-                                    <td id="pending_withdraw_total"></td>
-                                </tr>
-                                <tr class="text-success">
-                                    <td class="text-success">Pending (Sell)</td>
-                                    <td id="pending_sell_cash"></td>
-                                    <td id="pending_sell_epf"></td>
-                                    <td id="pending_sell_total"></td>
-                                </tr>
-                                <tr class="text-success">
-                                    <td class="text-success">Pending (Buy)</td>
-                                    <td id="pending_buy_cash"></td>
-                                    <td id="pending_buy_epf"></td>
-                                    <td id="pending_buy_total"></td>
-                                </tr>
-                                <tr class="text-success">
-                                    <td>Accrued Interest</td>
-                                    <td id="interest_cash"></td>
-                                    <td id="interest_epf"></td>
-                                    <td id="interest_total"></td>
-                                </tr>
-                                <tr>
-                                    <td>Profit &amp; Loss (MYR) Since Inception</td>
-                                    <td id="pnl_cash"></td>
-                                    <td id="pnl_epf"></td>
-                                    <td id="pnl_total"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="pt-2">
-                <a class="btn btn-danger" href="#" data-toggle="modal" id="portfolio_tracking" data-target="#modal_portfolio" style="color:white">Portfolio Tracking</a>
-            </div>
-        </div>
-        <div class="tab-pane fade" id="tabtwo" role="tabpanel">
-            <div class="card">
-                <div class="card-header">
-                    <h6>Current holdings in this investment account</h6>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive" style="display: flex; width: 100%;">
-                        <div>
+
+                <div class="tab-pane fade" id="allocation" role="tabpanel">
+                    <div class="holding--chart">
+                        <div class="holding--chart_container">
                             <div id="div-chart-asset"></div>
                         </div>
-                        <div>
+                        <div class="holding--chart_container">
                             <div id="div-chart-fund"></div>
                         </div>
-                        <div>
+                        <div class="holding--chart_container">
                             <div id="div-chart-geographical"></div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="tab-pane fade" id="tabthree" role="tabpanel">
-            <div class="card">
-                <div class="card-header">
-                    <h6>Current holdings in this investment account</h6>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive" id="div-holding-by-currency">
+
+                <div class="tab-pane fade" id="fund_currency" role="tabpanel">
+                    <div class="table-responsive holding--negative-margin" id="div-holding-by-currency">
                     </div>
                 </div>
             </div>
         </div>
         <div class="tab-pane fade" id="tabfour" role="tabpanel">
-            <div class="card">
-                <div class="card-header">
-                    <h6>Transaction In Process</h6>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table" style="font-size:11px" id="payment_pending_tbl">
+            <div class="holding--filter">
+                <span class="holding--label">Filter By</span>
+
+                <ul class="nav nav-pills">
+                    <li>
+                        <a class="holding--pill active" data-toggle="pill" data-target="#pending_transactions">Pending
+                        </a>
+                    </li>
+                    <li>
+                        <a class="holding--pill" data-toggle="pill" data-target="#historical_transactions">Historical
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="pending_transactions" role="tabpanel">
+                    <div class="table-responsive holding--negative-margin">
+                        <table class="table holding--table" id="payment_pending_tbl">
                             <thead>
                                 <tr>
-                                    <th>Transaction Type</th>
+                                    <th>Type</th>
                                     <th>Fund Name</th>
                                     <th>Transaction Date</th>
                                     <th>Investment Amount</th>
@@ -193,27 +230,22 @@ ob_start();
                                     <th>Status</th>
                                     <th>Confirmation Date</th>
                                     <th>Remarks</th>
-                                    <th>SAF documents</th>
+                                    <th>SAF</th>
                                 </tr>
                             </thead>
                             <tbody>
+
                             </tbody>
                         </table>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="tab-pane fade" id="tabfive" role="tabpanel">
-            <div class="card">
-                <div class="card-header">
-                    <h6>Transaction History</h6>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table" style="font-size:11px" id="ut_history_tbl">
+
+                <div class="tab-pane fade" id="historical_transactions" role="tabpanel">
+                    <div class="table-responsive holding--negative-margin">
+                        <table class="table holding--table" id="ut_history_tbl">
                             <thead>
                                 <tr>
-                                    <th>Transaction Type</th>
+                                    <th>Type</th>
                                     <th>Fund Name</th>
                                     <th>Transaction Date</th>
                                     <th>Investment Amount</th>
@@ -224,10 +256,11 @@ ob_start();
                                     <th>Status</th>
                                     <th>Confirmation Date</th>
                                     <th>Remarks</th>
-                                    <th>SAF documents</th>
+                                    <th>SAF</th>
                                 </tr>
                             </thead>
                             <tbody>
+
                             </tbody>
                         </table>
                     </div>
@@ -235,13 +268,27 @@ ob_start();
             </div>
         </div>
         <div class="tab-pane fade" id="tabsix" role="tabpanel">
-            <div class="card">
-                <div class="card-header">
-                    <h6>Absolute Fund Performance</h6>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table" id="absolute_fund_tbl" style="font-size:11px">
+            <div class="holding--filter">
+                <span class="holding--label">Filter By</span>
+
+                <ul class="nav nav-pills">
+                    <li>
+                        <a class="holding--pill active" data-toggle="pill" data-target="#absolute_returns">
+                            Absolute Returns
+                        </a>
+                    </li>
+                    <li>
+                        <a class="holding--pill" data-toggle="pill" data-target="#annualised_returns">
+                            Annualised Returns
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="tab-content">
+                <div class="tab-pane fade" id="absolute_returns" role="tabpanel">
+                    <div class="table-responsive holding--negative-margin">
+                        <table class="table holding--table" id="absolute_fund_tbl">
                             <thead>
                                 <tr>
                                     <th>Fund Name</th>
@@ -263,27 +310,30 @@ ob_start();
                         </table>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="tab-pane fade" id="tabseven" role="tabpanel">
-            <div class="card">
-                <div class="card-header">
-                    <h6>Annualized Funds Performance</h6>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table" id="annual_fund_tbl" style="font-size:11px">
+
+                <div class="tab-pane fade" id="annualised_returns" role="tabpanel">
+                    <div class="table-responsive holding--negative-margin">
+                        <table class="table holding--table" id="annual_fund_tbl">
                             <thead>
                                 <tr>
                                     <th>Fund Name</th>
                                     <th>Market Value (MYR)</th>
                                     <th>Weight</th>
-                                    <?php for ($i = 1, $year = intval(date("Y")) - 1; $i <= 5; $i++, $year--) { ?>
-                                        <th><?= $year ?> (%)</th>
+                                    <?php for (
+                                        $i = 1,
+                                        $year =
+                                            intval(date('Y')) - 1;
+                                        $i <= 5;
+                                        $i++, $year--
+                                    ) { ?>
+                                        <th>
+                                            <div><?= $year ?> (%)</div>
+                                        </th>
                                     <?php } ?>
                                 </tr>
                             </thead>
                             <tbody>
+
                             </tbody>
                         </table>
                     </div>
@@ -292,57 +342,64 @@ ob_start();
         </div>
     </div>
 </div>
+
 <div class="py-2 collapse" id="cash_account">
-    <div class="card">
-        <div class="card-header"> Cash Account Summary</div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table" id="cash_account_table">
-                    <thead>
-                        <tr>
-                            <th>Cash Account Number(Currency)</th>
-                            <th>Available Balance</th>
-                            <th>Ledger Balance</th>
-                            <th>Available Balance (MYR)</th>
-                            <th>Overdue Amount</th>
-                            <th>View Transaction History</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+    <h3 class="holding--title mb-3">Cash Account Summary</h3>
+    <div class="table-responsive holding--negative-margin">
+        <table class="table holding--table" id="cash_account_table">
+            <thead>
+                <tr>
+                    <th>Cash Account Number(Currency)</th>
+                    <th>Available Balance</th>
+                    <th>Ledger Balance</th>
+                    <th>Available Balance (MYR)</th>
+                    <th>Overdue Amount</th>
+                    <th>View Transaction History</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
     </div>
 </div>
+
 <div class="py-2 collapse" id="SAF">
-    <div class="card">
-        <div class="card-header"> Suitability Assessment Form (SAF)</div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table" id="saf_tbl">
-                    <thead>
-                        <tr>
-                            <th>Account No</th>
-                            <th>Form Type</th>
-                            <th>Create Date</th>
-                            <th>Approve Date</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+    <h3 class="holding--title mb-3">Suitability Assessment Form (SAF)</h3>
+    <div class="table-responsive holding--negative-margin">
+        <table class="table holding--table" id="saf_tbl">
+            <thead>
+                <tr>
+                    <th>Account No</th>
+                    <th>Form Type</th>
+                    <th>Create Date</th>
+                    <th>Approve Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
     </div>
 </div>
+
 <div class="py-2 collapse" id="summary_tab">
-    <div class="card">
-        <div class="card-header">Holdings Summary</div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table" id="summary_tab_tbl">
+    <ul class="nav nav-pill holding--nav">
+        <li class="nav-item">
+            <a href="" class="nav-link active" data-toggle="pill" data-target="#tab_holdings_summary">
+                Holdings Summary
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="" class="nav-link" data-toggle="pill" data-target="#tab_cash_account_holdings">
+                Cash Account Holdings
+            </a>
+        </li>
+    </ul>
+
+    <div class="tab-content mt-2">
+        <div class="tab-pane fade show active" id="tab_holdings_summary" role="tabpanel">
+            <div class="table-responsive holding--negative-margin">
+                <table class="table holding--table" id="summary_tab_tbl">
                     <thead>
                         <tr>
                             <th>Fund Name</th>
@@ -356,12 +413,10 @@ ob_start();
                 </table>
             </div>
         </div>
-    </div>
-    <div class="card">
-        <div class="card-header">Cash Account Holdings</div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table" id="cash_acc_btm_tbl">
+
+        <div class="tab-pane fade" id="tab_cash_account_holdings" role="tabpanel">
+            <div class="table-responsive holding--negative-margin">
+                <table class="table holding--table" id="cash_acc_btm_tbl">
                     <thead>
                         <tr>
                             <th>Cash Account Number (Currency)</th>
@@ -377,6 +432,7 @@ ob_start();
         </div>
     </div>
 </div>
+
 <?php
 $template['content'] = [];
 $template['content']["table"] = ob_get_clean();
@@ -388,16 +444,24 @@ $template['content']["table"] = ob_get_clean();
  */
 ob_start();
 ?>
-<div class="modal" id="modal_info">
+
+<div class="modal holding" id="modal_info">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Consolidated Account View</h5>
-                <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 6L6 18" stroke="#C33B32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M6 6L18 18" stroke="#C33B32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                </button>
             </div>
             <div class="modal-body">
-                <div class="table-responsive">
-                    <table class="table" id="consolidated_tbl">
+                <div class="table-responsive holding--negative-margin">
+                    <table class="table holding--table" style="width: 100%" id="consolidated_tbl">
                         <thead>
                             <tr>
                                 <th>Account No</th>
@@ -420,16 +484,24 @@ ob_start();
         </div>
     </div>
 </div>
-<div class="modal" id="transaction_history">
+
+<div class="modal holding" id="transaction_history">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Transaction History</h5>
                 <div id="trans_history_trust_id"></div>
-                <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 6L6 18" stroke="#C33B32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M6 6L18 18" stroke="#C33B32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                </button>
             </div>
             <div class="modal-body">
-                <div class="table-responsive">
+                <div class="table-responsive holding--negative-margin">
                     <table class="table" id="trans_history_tbl">
                         <thead>
                             <tr>
@@ -456,17 +528,23 @@ ob_start();
         </div>
     </div>
 </div>
-<div class="modal" id="modal_deposit">
+
+<div class="modal holding" id="modal_deposit">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Deposit</h5>
                 <button type="button" class="close" data-dismiss="modal">
-                    <span>×</span>
+                    <span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 6L6 18" stroke="#C33B32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M6 6L18 18" stroke="#C33B32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
                 </button>
             </div>
             <div class="modal-body">
-                <div class="table-responsive">
+                <div class="table-responsive holding--negative-margin">
                     <table class="table" id="deposit_tbl">
                         <thead>
                             <tr>
@@ -486,15 +564,23 @@ ob_start();
         </div>
     </div>
 </div>
-<div class="modal" id="modal_capital_outflow">
+
+<div class="modal holding" id="modal_capital_outflow">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Capital Outflow (Funds Withdrawal)</h5>
-                <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 6L6 18" stroke="#C33B32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M6 6L18 18" stroke="#C33B32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                </button>
             </div>
             <div class="modal-body">
-                <div class="table-responsive">
+                <div class="table-responsive holding--negative-margin">
                     <table class="table" id="capital_outflow_tbl">
                         <thead>
                             <tr>
@@ -516,15 +602,23 @@ ob_start();
         </div>
     </div>
 </div>
-<div class="modal" id="modal_epf_outflow">
+
+<div class="modal holding" id="modal_epf_outflow">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">EPF Outflow (Funds Withdrawal)</h5>
-                <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 6L6 18" stroke="#C33B32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M6 6L18 18" stroke="#C33B32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                </button>
             </div>
             <div class="modal-body">
-                <div class="table-responsive">
+                <div class="table-responsive holding--negative-margin">
                     <table class="table" id="epf_outflow_tbl">
                         <thead>
                             <tr>
@@ -546,15 +640,23 @@ ob_start();
         </div>
     </div>
 </div>
-<div class="modal" id="modal_portfolio">
+
+<div class="modal holding" id="modal_portfolio">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Portfolio Tracking </h5>
-                <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 6L6 18" stroke="#C33B32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M6 6L18 18" stroke="#C33B32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                </button>
             </div>
             <div class="modal-body">
-                <div class="table-responsive">
+                <div class="table-responsive holding--negative-margin">
                     <table class="table" id="portfolio_tracking_tbl">
                         <thead>
                             <tr>
@@ -582,12 +684,20 @@ ob_start();
         </div>
     </div>
 </div>
-<div class="modal" id="modal_portfolio_tracking_form">
+
+<div class="modal holding" id="modal_portfolio_tracking_form">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Portfolio Tracking</h5>
-                <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 6L6 18" stroke="#C33B32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M6 6L18 18" stroke="#C33B32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                </button>
             </div>
             <div class="modal-body">
                 <input type="hidden" id="ipt-tracking-action">
@@ -629,305 +739,304 @@ ob_start();
         </div>
     </div>
 </div>
-<div class="modal" id="modal_client_info">
+
+<div class="modal holding" id="modal_client_info">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Client Information</h5>
-                <button type="button" class="close" id="btn_dismiss_client_summary" data-dismiss="modal"><span>×</span></button>
+                <button type="button" class="close" id="btn_dismiss_client_summary" data-dismiss="modal">
+                    <span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 6L6 18" stroke="#C33B32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M6 6L18 18" stroke="#C33B32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                </button>
             </div>
+
             <div class="modal-body">
-                <div class="card">
-                    <div class="card-header"> Account Details</div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h6>Account Type</h6>
-                            </div>
-                            <div class="col-md-8">
-                                <strong id="summary_client_type"></strong>
-                            </div>
+                <div>
+                    <h6 class="modal-subtitle">
+                        Account Details
+                    </h6>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h6 class="row-title">Account Type</h6>
                         </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h6>Account No</h6>
-                            </div>
-                            <div class="col-md-8">
-                                <strong id="summary_account_number"></strong>
-                            </div>
+                        <div class="col-md-3">
+                            <h6 id="summary_client_type" class="row-subtitle"></h6>
                         </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h6>Account Status</h6>
-                            </div>
-                            <div class="col-md-8">
-                                <strong id="summary_account_status"></strong>
-                            </div>
+                        <div class="col-md-3">
+                            <h6 class="row-title">User Login</h6>
                         </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h6>User Login</h6>
-                            </div>
-                            <div class="col-md-8">
-                                <strong id="summary_account_user_id"></strong>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h6>Wrap Fee (%)</h6>
-                            </div>
-                            <div class="col-md-8">
-                                <strong id="summary_account_wrap_fee"></strong>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h6>Risk Profile</h6>
-                            </div>
-                            <div class="col-md-8">
-                                <strong id="summary_account_risk_profile"></strong>
-                            </div>
+                        <div class="col-md-3">
+                            <h6 id="summary_account_user_id" class="row-subtitle"></h6>
                         </div>
                     </div>
-                </div>
-
-                <div class="card mt-4 div-client-summary-applicant">
-                    <div class="card-header"> Personal Details</div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h6>Salutation</h6>
-                            </div>
-                            <div class="col-md-8">
-                                <strong id="summary_account_salutation"></strong>
-                            </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h6 class="row-title">Account No</h6>
                         </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h6>Client Name</h6>
-                            </div>
-                            <div class="col-md-8">
-                                <strong id="summary_client_name"></strong>
-                            </div>
+                        <div class="col-md-3">
+                            <h6 id="summary_account_number" class="row-subtitle"></h6>
                         </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h6>New IC Number/Passport</h6>
-                            </div>
-                            <div class="col-md-8">
-                                <strong id="summary_client_ic"></strong>
-                            </div>
+                        <div class="col-md-3">
+                            <h6 class="row-title">Wrap Fee (%)</h6>
                         </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h6>Gender</h6>
-                            </div>
-                            <div class="col-md-8">
-                                <strong id="summary_client_gender"></strong>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h6>Date of Birth (D/M/Y)</h6>
-                            </div>
-                            <div class="col-md-8">
-                                <strong id="summary_client_dob"></strong>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h6>Nationality</h6>
-                            </div>
-                            <div class="col-md-8">
-                                <strong id="summary_client_nationality"></strong>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h6>Race</h6>
-                            </div>
-                            <div class="col-md-8">
-                                <strong id="summary_client_race"></strong>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h6>EPF Account No</h6>
-                            </div>
-                            <div class="col-md-8">
-                                <strong id="summary_client_epf_no"></strong>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h6>PPA Account No</h6>
-                            </div>
-                            <div class="col-md-8">
-                                <strong id="summary_client_ppa_no"></strong>
-                            </div>
-                        </div>
-                        <div class="row" style="display: none;">
-                            <div class="col-md-4">
-                                <h6>User Login</h6>
-                            </div>
-                            <div class="col-md-8">
-                                <strong id="summary_client_user_id"></strong>
-                            </div>
+                        <div class="col-md-3">
+                            <h6 id="summary_account_wrap_fee" class="row-subtitle"></h6>
                         </div>
                     </div>
-                </div>
-
-                <div class="card mt-4 div-client-summary-applicant">
-                    <div class="card-header">Contact Information</div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h6>Home Phone Number</h6>
-                            </div>
-                            <div class="col-md-8">
-                                <strong id="summary_client_home_phone"></strong>
-                            </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h6 class="row-title">Account Status</h6>
                         </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h6>Office Phone Number</h6>
-                            </div>
-                            <div class="col-md-8">
-                                <strong id="summary_client_office_phone"></strong>
-                            </div>
+                        <div class="col-md-3">
+                            <h6 id="summary_account_status" class="row-subtitle"></h6>
                         </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h6>Mobile Phone Number</h6>
-                            </div>
-                            <div class="col-md-8">
-                                <strong id="summary_client_mobile_phone"></strong>
-                            </div>
+                        <div class="col-md-3">
+                            <h6 class="row-title">Risk Profile</h6>
                         </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h6>Email</h6>
-                            </div>
-                            <div class="col-md-8">
-                                <strong id="summary_client_email"></strong>
-                            </div>
+                        <div class="col-md-3">
+                            <h6 id="summary_account_risk_profile" class="row-subtitle"></h6>
                         </div>
                     </div>
+
+                    <hr style="margin-bottom: 30px" />
                 </div>
 
-                <div class="card mt-4">
-                    <div class="card-header"> E-Statement</div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h6>E-Statement Status</h6>
-                            </div>
-                            <div class="col-md-8">
-                                <strong id="summary_estatement_status"></strong>
-                            </div>
+
+                <div class="div-client-summary-applicant">
+                    <h6 class="modal-subtitle">
+                        Personal Details
+                    </h6>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h6 class="row-title">Salutation</h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 class="row-subtitle" id="summary_account_salutation"></h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 class="row-title">Nationality</h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 class="row-subtitle" id="summary_client_nationality"></h6>
                         </div>
                     </div>
-                </div>
 
-                <div class="card mt-4 div-client-summary-applicant">
-                    <div class="card-header">Permanent Address</div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h6>Address</h6>
-                            </div>
-                            <div class="col-md-8">
-                                <strong id="summary_add1"></strong>
-                            </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h6 class="row-title">Client Name</h6>
                         </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h6>State</h6>
-                            </div>
-                            <div class="col-md-8">
-                                <strong id="summary_add2"></strong>
-                            </div>
+                        <div class="col-md-3">
+                            <h6 class="row-subtitle" id="summary_client_name"></h6>
                         </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h6>Postal Code</h6>
-                            </div>
-                            <div class="col-md-8">
-                                <strong id="summary_add3"></strong>
-                            </div>
+                        <div class="col-md-3">
+                            <h6 class="row-title">Race</h6>
                         </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h6>Country/Region</h6>
-                            </div>
-                            <div class="col-md-8">
-                                <strong id="summary_add4"></strong>
-                            </div>
+                        <div class="col-md-3">
+                            <h6 class="row-subtitle" id="summary_client_race"></h6>
                         </div>
                     </div>
-                </div>
-
-                <div class="card mt-4 div-client-summary-applicant">
-                    <div class="card-header">Employment Information</div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h6>Occupation</h6>
-                            </div>
-                            <div class="col-md-8">
-                                <strong id="summary_employment_occupation"></strong>
-                            </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h6 class="row-title">New IC Number/Passport</h6>
                         </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h6>Name of Employer</h6>
-                            </div>
-                            <div class="col-md-8">
-                                <strong id="summary_employment_employer"></strong>
-                            </div>
+                        <div class="col-md-3">
+                            <h6 class="row-subtitle" id="summary_client_ic"></h6>
                         </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h6>Annual Salary</h6>
-                            </div>
-                            <div class="col-md-8">
-                                <strong id="summary_employment_annual_salary"></strong>
-                            </div>
+                        <div class="col-md-3">
+                            <h6 class="row-title">EPF Account No</h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 class="row-subtitle" id="summary_client_epf_no"></h6>
                         </div>
                     </div>
-                </div>
-
-                <div class="card mt-4">
-                    <div class="card-header">Local Bank Account</div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h6>Bank Name</h6>
-                            </div>
-                            <div class="col-md-8">
-                                <strong id="summary_local_bank_name"></strong>
-                            </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h6 class="row-title">Gender</h6>
                         </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <h6>Bank Account</h6>
-                            </div>
-                            <div class="col-md-8">
-                                <strong id="summary_local_bank_acc"></strong>
-                            </div>
+                        <div class="col-md-3">
+                            <h6 class="row-subtitle" id="summary_client_gender"></h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 class="row-title">PPA Account No</h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 class="row-subtitle" id="summary_client_ppa_no"></h6>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h6 class="row-title">Date of Birth (D/M/Y)</h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 class="row-subtitle" id="summary_client_dob"></h6>
+                        </div>
+                        <div class="col-md-3" style="display: none;">
+                            <h6 class="row-title">User Login</h6>
+                        </div>
+                        <div class="col-md-3" style="display: none;">
+                            <h6 class="row-subtitle" id="summary_client_user_id"></h6>
+                        </div>
+                    </div>
+
+                    <hr style="margin-bottom: 30px" />
                 </div>
 
-                <div id="div-client-summary-applicants"></div>
+
+                <div class="div-client-summary-applicant">
+                    <h6 class="modal-subtitle">
+                        Contact Information
+                    </h6>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h6 class="row-title">Home Phone Number</h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 class="row-subtitle" id="summary_client_home_phone"></h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 class="row-title">Mobile Phone Number</h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 class="row-subtitle" id="summary_client_mobile_phone"></h6>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h6 class="row-title">Office Phone Number</h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 class="row-subtitle" id="summary_client_office_phone"></h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 class="row-title">Email</h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 class="row-subtitle" id="summary_client_email"></h6>
+                        </div>
+                    </div>
+
+                    <hr style="margin-bottom: 30px" />
+                </div>
+
+
+                <div>
+                    <h6 class="modal-subtitle">
+                        E-Statement
+                    </h6>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h6 class="row-title">E-Statement Status</h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 class="row-subtitle" id="summary_estatement_status"></h6>
+                        </div>
+                    </div>
+
+                    <hr style="margin-bottom: 30px" />
+                </div>
+
+
+                <div class="div-client-summary-applicant">
+                    <h6 class="modal-subtitle">Permanent Address</h6>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h6 class="row-title">Address</h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 class="row-subtitle" id="summary_add1"></h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 class="row-title">Postal Code</h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 class="row-subtitle" id="summary_add3"></h6>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h6 class="row-title">State</h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 class="row-subtitle" id="summary_add2"></h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 class="row-title">Country/Region</h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 class="row-subtitle" id="summary_add4"></h6>
+                        </div>
+                    </div>
+
+                    <hr style="margin-bottom: 30px" />
+                </div>
+
+                <div class="div-client-summary-applicant">
+                    <h6 class="modal-subtitle">Employment Information</h6>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h6 class="row-title">Occupation</h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 class="row-subtitle" id="summary_employment_occupation"></h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 class="row-title">Annual Salary</h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 class="row-subtitle" id="summary_employment_annual_salary"></h6>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h6 class="row-title">Name of Employer</h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 class="row-subtitle" id="summary_employment_employer"></h6>
+                        </div>
+                    </div>
+
+                    <hr style="margin-bottom: 30px" />
+                </div>
+
+                <div>
+                    <h6 class="modal-subtitle">Local Bank Account</h6>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h6 class="row-title">Bank Name</h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 class="row-subtitle" id="summary_local_bank_name"></h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 class="row-title">Bank Account</h6>
+                        </div>
+                        <div class="col-md-3">
+                            <h6 class="row-subtitle" id="summary_local_bank_acc"></h6>
+                        </div>
+                    </div>
+
+                    <hr style="margin-bottom: 30px" />
+                </div>
+
+                <div id="div-client-summary-applicants">
+
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" id="btn_print" class="btn btn-danger">Print</button>
-                <button type="button" class="btn btn-secondary" id="btn_close" data-dismiss="modal">Close</button>
-            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" id="btn_print" class="btn btn-danger">Print</button>
+            <button type="button" class="btn btn-secondary" id="btn_close" data-dismiss="modal">Close</button>
         </div>
     </div>
 </div>
+</div>
+
 <?php
 $template['content']["modal"] = ob_get_clean();
 
@@ -938,28 +1047,15 @@ $template['content']["modal"] = ob_get_clean();
  */
 ob_start();
 ?>
+
 <style>
-    .dataTable ul {
+    /* .dataTable ul {
         padding-left: 15px;
-    }
-
-    .text-success a {
-        color: #28a745;
-        text-decoration: underline;
-    }
-
-    .text-danger a {
-        text-decoration: underline;
-    }
-
-    .tr-group {
-        background-color: #c33b32;
-        color: #fff;
-    }
+    } */
 
     tfoot {
-        border-top: solid 3px #999;
-        background-color: #eee;
+        /* border-top: solid 3px #f5f5fa; */
+        background-color: #f5f5fa;
     }
 
     .s-up {
@@ -975,10 +1071,24 @@ ob_start();
         font-size: 13px;
     }
 
-    #portfolio_ut_prs .nav-link {
-        border: 1px solid #000000;
+    hr {}
+
+
+    /* override pagination style */
+    .ui.pagination.menu {
+        border: none;
+        box-shadow: none;
+    }
+
+    .ui.menu .item:before {
+        all: initial;
+    }
+
+    .ui.pagination.menu a {
+        text-decoration: none !important;
     }
 </style>
+
 <?php
 $template["header"] = ob_get_clean();
 
@@ -989,7 +1099,9 @@ $template["header"] = ob_get_clean();
  */
 ob_start();
 ?>
+
 <?php $this->load->view('template/_plugin_js_highchart'); ?>
+
 <script>
     var currentClientId,
         currentClientIsWrap,
@@ -1163,21 +1275,63 @@ ob_start();
             }
         });
 
-        $('a[data-toggle="pill"]').on('show.bs.tab', function(e) {
-            var previos_tab = $(e.relatedTarget).data('target');
-            var current_tab = $(e.target).data('target');
+        // run once since this is the default tab for transactions
+        $('a[data-target="#tabfour"]').on('show.bs.tab', function(e) {
+            $("#pending_transactions").addClass('show active')
 
-            if (current_tab == '#tabfour') {
-                getClientUTByPaymentPending();
-            } else if (current_tab == '#tabfive') {
-                getClientUTByPaymentHistory();
-            } else {
-                if (previos_tab == "#tabfour" || previos_tab == "#tabfive") {
-                    getClientAccruedInterest()
-                    getClientHoldingPaymentTable();
-                    getClientUTByPayment();
-                }
-            }
+            getClientUTByPaymentPending();
+            // ToDo: why check previous tab
+            // getClientAccruedInterest()
+            // getClientHoldingPaymentTable();
+            // getClientUTByPayment();
+        })
+        $('a[data-target="#pending_transactions"]').on('show.bs.tab', function(e) {
+            getClientUTByPaymentPending();
+            // ToDo: why check previous tab
+            // getClientAccruedInterest()
+            // getClientHoldingPaymentTable();
+            // getClientUTByPayment();
+        })
+        $('a[data-target="#historical_transactions"]').on('show.bs.tab', function(e) {
+            getClientUTByPaymentHistory();
+            // ToDo: why check previous tab
+            // getClientAccruedInterest()
+            // getClientHoldingPaymentTable();
+            // getClientUTByPayment();
+        })
+
+        // regenerate holding--bottom width on each tab change
+        $('a[data-toggle="pill"]').on('show.bs.tab', function(e) {
+            setTimeout(() => {
+                $('.holding--bottom').each(function() {
+                    var width = $(this).prev().width()
+                    if (width > 0) {
+                        $(this).width(width - 16)
+                    }
+                })
+            }, 100)
+        })
+
+        // $('a[data-toggle="pill"]').on('show.bs.tab', function(e) {
+        //     var previos_tab = $(e.relatedTarget).data('target');
+        //     var current_tab = $(e.target).data('target');
+
+        //     if (current_tab == '#tabfour') {
+        //         getClientUTByPaymentPending();
+        //     } else if (current_tab == '#tabfive') {
+        //         getClientUTByPaymentHistory();
+        //     } else {
+        //         if (previos_tab == "#tabfour" || previos_tab == "#tabfive") {
+        //             getClientAccruedInterest()
+        //             getClientHoldingPaymentTable();
+        //             getClientUTByPayment();
+        //         }
+        //     }
+        // })
+
+        // run once since this is the default tab for fund performance
+        $('a[data-target="#tabsix"]').on('show.bs.tab', function() {
+            $("#absolute_returns").addClass('show active')
         })
 
         $('#deposit_cash').on('click', function() {
@@ -1244,7 +1398,7 @@ ob_start();
                             for (var i = 0; i < arr_data.length; i++) {
                                 capital_outflow_tbl.row.add([
                                     (arr_data[i]['type_name']),
-                                    (arr_data[i]['fund_name'] || "-"),
+                                    titleCase(arr_data[i]['fund_name'] || "-"),
                                     (arr_data[i]['order_date'] || "-"),
                                     ("Cash Account"),
 
@@ -1287,7 +1441,7 @@ ob_start();
                             for (var i = 0; i < arr_data.length; i++) {
                                 epf_outflow_tbl.row.add([
                                     (arr_data[i]['type_name']),
-                                    (arr_data[i]['fund_name'] || "-"),
+                                    titleCase(arr_data[i]['fund_name'] || "-"),
                                     (arr_data[i]['order_date'] || "-"),
                                     ("EPF"),
                                     addCommaToNumber(
@@ -1312,13 +1466,29 @@ ob_start();
                 "searching": true, // Show Search
                 "info": true, // Show Info
                 "fixedHeader": false, // Fix header
-                "dom": '<"top"i>rt<"bottom"flp><"clear">'
+                "dom": 'rt<"holding--bottom"ipl><"clear">',
+                "drawCallback": function(settings) {
+                    // wait until table is rendered and
+                    // set holding--bottom to tables width
+                    $('.holding--bottom').each(function() {
+                        var width = $(this).prev().width()
+                        $(this).width(width - 16)
+                    })
+                },
+                "oLanguage": {
+                    "oPaginate": {
+                        'sNext': '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 18L15 12L9 6" stroke="#E0E0E0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>',
+                        'sPrevious': '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 18L9 12L15 6" stroke="#E0E0E0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>'
+                    }
+                }
             }
+
             if (options) {
                 $.each(options, function(k, v) {
                     settings[k] = v;
                 })
             }
+
             return settings;
         }
 
@@ -1384,9 +1554,13 @@ ob_start();
                         last = group;
                     }
                 });
+
+                $('.holding--bottom').each(function() {
+                    var width = $(this).prev().width()
+                    $(this).width(width - 16)
+                })
             }
         }));
-
 
         consolidated_tbl = $("#consolidated_tbl").DataTable(dataTableSetting());
 
@@ -1439,6 +1613,8 @@ ob_start();
         $('.tab-pane#tabone').addClass('show');
         $('.tab-pane#tabone').addClass('active');
 
+        $('#payment_method').addClass('show active');
+
         getClientAccruedInterest()
         getClientHoldingPaymentTable();
         getClientUTByPayment();
@@ -1456,6 +1632,9 @@ ob_start();
         currentClientId = client_code;
         currentClientIsWrap = is_wrap;
 
+        $('.nav-link[data-target="#tab_holdings_summary"]').addClass('active');
+        $('.tab-pane#tab_holdings_summary').addClass('show');
+        $('.tab-pane#tab_holdings_summary').addClass('active');
         getClientSummaryTabUpperPart();
         getClientSummaryTabBottomPart();
     }
@@ -1611,15 +1790,15 @@ ob_start();
 
                             // pie chart data
                             var unit = parseFloat(i['unit']);
-                            chart_asset_data = generatePieChartData(chart_asset_data, i['asset_class'] || "Others", unit);
-                            chart_fund_data = generatePieChartData(chart_fund_data, i['fund_name'], i['m_portfolio_perc']);
-                            chart_geographical_data = generatePieChartData(chart_geographical_data, i['geographical_allocation'] || "Others", unit);
+                            chart_asset_data = generatePieChartData(chart_asset_data, titleCase(i['asset_class'] || "Others"), unit);
+                            chart_fund_data = generatePieChartData(chart_fund_data, titleCase(i['fund_name']), i['m_portfolio_perc']);
+                            chart_geographical_data = generatePieChartData(chart_geographical_data, titleCase(i['geographical_allocation'] || "Others"), unit);
                             // pie chart data
 
                             // performance table data
                             // absolute fund tbl
                             absolute_fund_tbl.row.add([
-                                (i['fund_name'] || "-"),
+                                titleCase(i['fund_name'] || "-"),
                                 (parseFloat(i['latest_nav']).toFixed(4) || "-"),
                                 i['m_portfolio_perc'],
                                 displayAmount(i.performance_type_return, '1 Month'),
@@ -1633,7 +1812,7 @@ ob_start();
                             ]);
 
                             annual_fund_tbl.row.add([
-                                (i['fund_name'] || "-"),
+                                titleCase(i['fund_name'] || "-"),
                                 (parseFloat(i['latest_nav']).toFixed(4) || "-"),
                                 i['m_portfolio_perc'],
                                 displayAmount(i.performance_type_calendar_year_return, '1 Year'),
@@ -1677,7 +1856,7 @@ ob_start();
     }
 
     function drawFundByCurrencyTable(elem_div, funds, holding_total, grand_total) {
-        var elem_table = $('<table class="table" style="font-size:11px; width: 100%"><thead><tr><th></th><th>Fund Name</th><th>Payment Method</th><th>Investment Date</th><th>Available Units</th><th>Weighted Average Cost</th><th>Investment Amount</th><th>NAV</th><th>NAV Date</th><th>Current Value</th><th>Percentage of Portfolio (%)</th><th>Profit</th><th>Profit&nbsp; (%)</th></tr></thead><tbody></tbody><tfoot></tfoot></table>');
+        var elem_table = $('<table class="table holding--table" style="width: 100%"><thead><tr><th></th><th>Fund Name</th><th>Payment Method</th><th>Investment Date</th><th>Available Units</th><th>Weighted Average Cost</th><th>Investment Amount</th><th>NAV</th><th>NAV Date</th><th>Current Value</th><th>Percentage of Portfolio (%)</th><th>Profit</th><th>Profit&nbsp; (%)</th></tr></thead><tbody></tbody><tfoot></tfoot></table>');
         elem_div.append(elem_table);
         var datatableTable = elem_table.DataTable(dataTableSetting({
             "columnDefs": [{
@@ -1702,10 +1881,32 @@ ob_start();
                         last = group;
                     }
                 });
+
+                setTimeout(() => {
+                    $('.holding--bottom').each(function() {
+                        var width = $(this).prev().width()
+                        $(this).width(width - 16)
+                    })
+                }, 500)
             }
         }));
+
         $.each(funds, function(fi, fund) {
-            datatableTable.row.add(fund)
+            // profit (myr) index 11
+            const beforeProfit = fund.slice(0, 11)
+            let profitMyr = fund[11]
+            let profitPerc = fund[12]
+
+            if (Number(profitMyr) >= 0) {
+                profitMyr = `<span class='holding--success'>${profitMyr}</span>`
+                profitPerc = `<span class='holding--success'>${profitPerc}</span>`
+            } else {
+                profitMyr = `<span class='holding--danger'>${profitMyr}</span>`
+                profitPerc = `<span class='holding--danger'>${profitPerc}</span>`
+            }
+
+            const mergedFund = beforeProfit.concat([profitMyr, profitPerc])
+            datatableTable.row.add(mergedFund)
         });
 
         datatableTable.draw();
@@ -1761,9 +1962,21 @@ ob_start();
     }
 
     function unitTrustTableAppendRow(data, currency_myr = true) {
+        let profitTd, profitPercTd
+        let profitMyr = parseFloat(data[currency_myr ? 'm_profit' : 'profit']) || 0
+        if (profitMyr >= 0) {
+            profitTd = `<span class='holding--success'>${(addCommaToNumber(profitMyr))}</span>`
+            profitPercTd = `<span class='holding--success'>${
+            (addCommaToNumber(parseFloat(data[currency_myr ? 'm_profit_perc' : 'profit_perc']) || 0))}</span>`
+        } else {
+            profitTd = `<span class='holding--danger'>${(addCommaToNumber(profitMyr))}</span>`
+            profitPercTd = `<span class='holding--danger'>${
+            (addCommaToNumber(parseFloat(data[currency_myr ? 'm_profit_perc' : 'profit_perc']) || 0))}</span>`
+        }
+
         return [
             data['group'],
-            (data['fund_name'] || "-"),
+            titleCase(data['fund_name'] || "-"),
             data['payment_method'],
             data['inception_date'] ? data['inception_date'].substring(0, 10) : "-",
             (addCommaToNumber(parseFloat(data['unit']) || 0)),
@@ -1773,8 +1986,8 @@ ob_start();
             data['latest_nav_date'] ? data['latest_nav_date'].substring(0, 10) : "-",
             (addCommaToNumber(parseFloat(data[currency_myr ? 'm_curr_value' : 'curr_value']) || 0)),
             (addCommaToNumber(parseFloat(data[currency_myr ? 'm_portfolio_perc' : 'portfolio_perc']) || 0)),
-            (addCommaToNumber(parseFloat(data[currency_myr ? 'm_profit' : 'profit']) || 0)),
-            (addCommaToNumber(parseFloat(data[currency_myr ? 'm_profit_perc' : 'profit_perc']) || 0))
+            profitTd,
+            profitPercTd,
         ];
     }
 
@@ -1847,6 +2060,14 @@ ob_start();
     }
 
     function unitTrustTableFooterRow(data) {
+        let className
+
+        if (Number(data['profit']) >= 0) {
+            className = 'holding--success'
+        } else {
+            className = 'holding--danger'
+        }
+
         return '<tr>' +
             '<th>' + data['name'] + '</th>' +
             '<th>' + data['payment_method'] + '</th>' +
@@ -1858,8 +2079,8 @@ ob_start();
             '<th>-</th>' +
             '<th>' + addCommaToNumber(data['curr_amt']) + '</th>' +
             '<th>' + addCommaToNumber(data['portfolio_perc']) + '</th>' +
-            '<th>' + addCommaToNumber(data['profit']) + '</th>' +
-            '<th>' + addCommaToNumber(data['profit_perc']) + '</th>' +
+            `<th class='${className}'>` + addCommaToNumber(data['profit']) + '</th>' +
+            `<th class='${className}'>` + addCommaToNumber(data['profit_perc']) + '</th>' +
             '</tr>'
     }
 
@@ -1936,7 +2157,7 @@ ob_start();
     function initOrderList(tbl, list, is_wrap) {
         $.each(list, function(index, item) {
             var saf_link = item['file_path'] == undefined ? "-" : "<a href=\"<?= base_url() ?>file?f=" + item['file_path'] + item['file_name'] + "\" target=\"_blank\">View Investor SAF Details</a>";
-            var fund_name = item['fund_name'] || "-";
+            var fund_name = titleCase(item['fund_name'] || "-");
             var amount = addCommaToNumber(item[is_wrap ? 'net_amount' : 'amount'] || "-");
             var charge = addCommaToNumber(item['sale_charge_perc'] || "-");
             var nav = addCommaToNumber(item['nav'] || "-", 4);
@@ -2068,7 +2289,7 @@ ob_start();
                             total_profit += i.profit;
 
                             summary_tab_tbl.row.add([
-                                (i.fund_name || "-"),
+                                titleCase(i.fund_name || "-"),
                                 (addCommaToNumber(i.inv_amt || 0)),
                                 (addCommaToNumber(i.profit || 0)),
                                 (addCommaToNumber(i.profit / i.inv_amt * 100 || 0)),
@@ -2252,31 +2473,31 @@ ob_start();
         var pnl_cash = $("#pnl_cash");
         pnl_cash.text(addCommaToNumber(pnl_a));
         if (pnl_a >= 0) {
-            pnl_cash.removeClass('text-danger');
-            pnl_cash.addClass('text-success');
+            pnl_cash.removeClass('holding--danger');
+            pnl_cash.addClass('holding--success');
         } else {
-            pnl_cash.removeClass('text-success');
-            pnl_cash.addClass('text-danger');
+            pnl_cash.removeClass('holding--success');
+            pnl_cash.addClass('holding--danger');
         }
 
         var pnl_epf = $("#pnl_epf");
         pnl_epf.text(addCommaToNumber(pnl_b));
         if (pnl_b >= 0) {
-            pnl_epf.removeClass('text-danger');
-            pnl_epf.addClass('text-success');
+            pnl_epf.removeClass('holding--danger');
+            pnl_epf.addClass('holding--success');
         } else {
-            pnl_epf.removeClass('text-success');
-            pnl_epf.addClass('text-danger');
+            pnl_epf.removeClass('holding--success');
+            pnl_epf.addClass('holding--danger');
         }
 
         var pnl_total = $("#pnl_total");
         pnl_total.text(addCommaToNumber(pnl_ab));
         if (pnl_ab >= 0) {
-            pnl_total.removeClass('text-danger');
-            pnl_total.addClass('text-success');
+            pnl_total.removeClass('holding--danger');
+            pnl_total.addClass('holding--success');
         } else {
-            pnl_total.removeClass('text-success');
-            pnl_total.addClass('text-danger');
+            pnl_total.removeClass('holding--success');
+            pnl_total.addClass('holding--danger');
         }
     }
 
@@ -2389,6 +2610,9 @@ ob_start();
         });
     }
 
+    const chevronUp = `<svg width='14' height='8' viewBox='0 0 14 8' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M13 7L7 1L1 7' stroke='#c33b32' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' /></svg>`
+    // const chevronDown = `<svg width='14' height='8' viewBox='0 0 14 8' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M13 7L7 1L1 7' stroke='#c33b32' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' /></svg>`
+
     function getClientName() {
         showLoading()
         ajaxRequest({
@@ -2409,18 +2633,19 @@ ob_start();
                         $("#summary_client_type").text(client_json['clnt_type_description']);
                         $("#summary_account_number").text(client_json['client_code_label']);
                         $("#summary_account_status").text(client_json['status'] || "-");
-                        $("#summary_account_salutation").text(client_json['salutation'] || "-");
+                        $("#summary_account_salutation").text(titleCase(client_json['salutation'] || "-"));
                         $("#summary_account_user_id").text(client_json['login_id'] || "-");
                         $("#summary_account_wrap_fee").text(client_json['wrap_rate'] ? addCommaToNumber(client_json['wrap_rate']) : "-");
                         $("#summary_account_risk_profile").text(client_json['risk_profile'] || '-');
 
                         $("#summary_estatement_status").text(client_json['e_statement_description']);
 
-                        $("#summary_local_bank_name").text(client_json['bank_name'] || "-");
+                        $("#summary_local_bank_name").text(titleCase(client_json['bank_name'] || "-"));
                         $("#summary_local_bank_acc").text(client_json['bank_acc'] || "-");
 
                         var divApplicants = $("#div-client-summary-applicants");
-                        divApplicants.html("");
+                        divApplicants.html("<h6 class='modal-subtitle' style='margin-bottom: 30px;'>Account Holders</h6>");
+
                         var divApplicant = $(".div-client-summary-applicant");
                         if (client_json['applicants'] && client_json['applicants'].length > 0) {
                             divApplicant.hide();
@@ -2428,7 +2653,7 @@ ob_start();
                             $.each(client_json['applicants'], function(index, applicant) {
                                 var clone = divApplicant.clone();
 
-                                $("#summary_client_name", clone).text(applicant['client_name']);
+                                $("#summary_client_name", clone).text(titleCase(applicant['client_name']));
                                 $("#summary_client_ic", clone).text(applicant['new_ic'].trim() || applicant['old_ic'].trim() || "-");
                                 $("#summary_client_gender", clone).text(applicant['gender'] || "-");
                                 $("#summary_account_salutation", clone).text(applicant['salutation'] || "-");
@@ -2440,7 +2665,7 @@ ob_start();
                                     dob = '-';
                                 }
                                 $("#summary_client_dob", clone).text(dob);
-                                $("#summary_client_nationality", clone).text(applicant['nationality'] || "-");
+                                $("#summary_client_nationality", clone).text(titleCase(applicant['nationality'] || "-"));
                                 $("#summary_client_race", clone).text(applicant['race'] || "-");
                                 $("#summary_client_epf_no", clone).text(applicant['epf_no'] || "-");
                                 $("#summary_client_ppa_no", clone).text(applicant['ppa_no'] || "-");
@@ -2453,25 +2678,45 @@ ob_start();
                                 $("#summary_client_mobile_phone", clone).text(applicant['mobile'] || "-");
                                 $("#summary_client_email", clone).text(applicant['email'] || "-");
 
-                                $("#summary_add1", clone).text(applicant['addr1'] + " " + applicant['addr2'] + " " + applicant['addr3'] + " " + applicant['addr4'] + " " + applicant['addr5'] || "-");
-                                $("#summary_add2", clone).text(applicant['state'] || "-");
+                                $("#summary_add1", clone).text(titleCase(applicant['addr1'] + " " + applicant['addr2'] + " " + applicant['addr3'] + " " + applicant['addr4'] + " " + applicant['addr5'] || "-"));
+                                $("#summary_add2", clone).text(titleCase(applicant['state'] || "-"));
                                 $("#summary_add3", clone).text(applicant['postcode'] || "-");
-                                $("#summary_add4", clone).text(applicant['country_name'] || "-");
+                                $("#summary_add4", clone).text(titleCase(applicant['country_name'] || "-"));
 
                                 $("#summary_employment_occupation", clone).text(applicant['occupation'] || "-");
-                                $("#summary_employment_employer", clone).text(applicant['employer_name'] || "-");
-                                $("#summary_employment_annual_salary", clone).text(applicant['annual_income'] || "-");
+                                $("#summary_employment_employer", clone).text(titleCase(applicant['employer_name'] || "-"));
+                                $("#summary_employment_annual_salary", clone).text(titleCase(applicant['annual_income'] || "-"));
 
-                                divApplicants.append('<h3 style="margin-top: 20px;">Applicant ' + (index + 1) + '</h3>');
-                                divApplicants.append("<hr>");
-                                divApplicants.append(clone);
+                                const accordionDiv = $('<div/>')
+                                accordionDiv.addClass('holding--accordion')
+                                // accordionDiv.attr('aria-expanded', true)
+                                accordionDiv.attr('id', `accordion${index}`)
+                                accordionDiv.attr('role', 'tablist')
+                                accordionDiv.attr('aria-multiselectable', true)
 
-                                client_id.closest('.row').show();
+                                let accordionCard = $('<div/>')
+                                accordionCard.addClass('card')
+                                accordionCard.css('border', '0')
 
+                                let accordionHeader = `<div class="card-header" role="tab" style="background: white; padding: 0; border: 0; margin-bottom: 30px;"><a style='text-decoration: none;' data-toggle="collapse" data-parent="#accordion${index}" href='#applicant${index}' aria-expanded='false' aria-controls='applicant${index}'>`
+                                accordionHeader += `<div class="holding--accordion_toggle"><h3 class="modal-title">${(index + 1)}. ${titleCase(applicant['salutation'] || "")} ${titleCase(applicant['client_name'])} </h3>${chevronUp}</div>`
+                                accordionHeader += `</a></div>`
+
+                                let accordionContent = $('<div/>')
+                                accordionContent.attr('id', `applicant${index}`)
+                                accordionContent.addClass('collapse')
+                                accordionContent.css('padding', '0 32px 32px 32px')
+                                accordionContent.append(clone);
                                 clone.show();
+
+                                accordionCard.append(accordionHeader)
+                                accordionCard.append(accordionContent)
+                                accordionDiv.append(accordionCard)
+                                divApplicants.append(accordionDiv)
+                                client_id.closest('.row').show();
                             });
                         } else {
-                            $("#summary_client_name").text(client_json['client_name']);
+                            $("#summary_client_name").text(titleCase(client_json['client_name']));
                             $("#summary_client_ic").text(client_json['new_ic'].trim() || client_json['old_ic'].trim() || "-");
                             $("#summary_client_gender").text(client_json['gender'] || "-");
 
@@ -2482,7 +2727,7 @@ ob_start();
                                 dob = '-';
                             }
                             $("#summary_client_dob").text(dob);
-                            $("#summary_client_nationality").text(client_json['nationality'] || "-");
+                            $("#summary_client_nationality").text(title(client_json['nationality'] || "-"));
                             $("#summary_client_race").text(client_json['race'] || "-");
                             $("#summary_client_epf_no").text(client_json['epf_no'] || "-");
                             $("#summary_client_ppa_no").text(client_json['ppa_no'] || "-");
@@ -2492,10 +2737,10 @@ ob_start();
                             $("#summary_client_mobile_phone").text(client_json['mobile'] || "-");
                             $("#summary_client_email").text(client_json['email'] || "-");
 
-                            $("#summary_add1").text(client_json['addr1'] + " " + client_json['addr2'] + " " + client_json['addr3'] + " " + client_json['addr4'] + " " + client_json['addr5'] || "-");
-                            $("#summary_add2").text(client_json['state'] || "-");
+                            $("#summary_add1").text(titleCase(client_json['addr1'] + " " + client_json['addr2'] + " " + client_json['addr3'] + " " + client_json['addr4'] + " " + client_json['addr5'] || "-"));
+                            $("#summary_add2").text(titleCase(client_json['state'] || "-"));
                             $("#summary_add3").text(client_json['postcode'] || "-");
-                            $("#summary_add4").text(client_json['country_name'] || "-");
+                            $("#summary_add4").text(titleCase(client_json['country_name'] || "-"));
 
                             $("#summary_employment_occupation").text(client_json['occupation'] || "-");
                             $("#summary_employment_employer").text(client_json['employer_name'] || "-");
@@ -2632,6 +2877,14 @@ ob_start();
             });
         })
 
+        Highcharts.setOptions({
+            chart: {
+                style: {
+                    fontFamily: 'Inter'
+                }
+            }
+        })
+
         Highcharts.chart(id, {
             exporting: {
                 buttons: {
@@ -2654,9 +2907,17 @@ ob_start();
             chart: {
                 type: 'pie',
                 zoomType: 'x',
+                backgroundColor: "#f5f5fa",
             },
             title: {
-                text: title
+                text: title,
+                style: {
+                    color: '#141414',
+                    fontSize: '12px',
+                    fontWeight: 500,
+                    lineHeight: '16px',
+                    letterSpacing: '0.08em',
+                }
             },
             tooltip: {
                 shared: true,
@@ -2666,6 +2927,8 @@ ob_start();
             },
             plotOptions: {
                 pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
                     tooltip: {
                         pointFormat: (series != 'Percentage of Portfolio (%)' ? 'Percentage: {point.percentage:.2f}%<br>' : '') + series + ': {point.y}',
                     }
@@ -2679,7 +2942,17 @@ ob_start();
             }]
         });
     }
+
+    const titleCase = (str) => {
+        var splitStr = str.toLowerCase().split(' ')
+        splitStr.forEach((item, i) => {
+            splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1)
+        })
+
+        return splitStr.join(' ')
+    }
 </script>
+
 <?php
 $template["footer"] = ob_get_clean();
 ?>

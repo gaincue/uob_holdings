@@ -14,6 +14,21 @@ $template = [
 ob_start();
 ?>
 
+<!-- custom params to quick access user -->
+<?php if (isset($_GET['clientcode']) && isset($_GET['iswrap']) && isset($_GET['si'])) { ?>
+    <script>
+        var paramClientCode = "<?php echo $_GET['clientcode']; ?>"
+        var paramIsWrap = "<?php echo $_GET['iswrap']; ?>"
+        var paramSi = "<?php echo $_GET['si']; ?>"
+    </script>
+<?php } else { ?>
+    <script>
+        var paramClientCode = null
+        var paramIsWrap = null
+        var paramSi = null
+    </script>
+<?php } ?>
+
 <div class="py-5">
     <div class="container">
         <div class="row pb-2" id="switchIfa">
@@ -460,6 +475,16 @@ ob_start();
         //     alert("Please complete fund details.")
         //     hideLoading();
         // 
+
+        // if clientcode, iswrap, si is passed via url parameter
+        if (paramClientCode != null && paramIsWrap != null && paramSi != null && window.select_client_handle !== undefined) {
+            var element = $('<div></div>', {
+                'data-iswrap': paramIsWrap,
+                'data-si': paramSi,
+                'data-clientcode': paramClientCode
+            })
+            select_client_handle(element);
+        }
     }
 
     function init_search_client() {

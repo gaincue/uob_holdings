@@ -29,6 +29,21 @@ $template = [
 ob_start();
 ?>
 
+<!-- custom params to quick access user -->
+<?php if (isset($_GET['clientcode']) && isset($_GET['iswrap']) && isset($_GET['si'])) { ?>
+    <script>
+        var paramClientCode = "<?php echo $_GET['clientcode']; ?>"
+        var paramIsWrap = "<?php echo $_GET['iswrap']; ?>"
+        var paramSi = "<?php echo $_GET['si']; ?>"
+    </script>
+<?php } else { ?>
+    <script>
+        var paramClientCode = null
+        var paramIsWrap = null
+        var paramSi = null
+    </script>
+<?php } ?>
+
 <?php $this->load->view("template/_loading"); ?>
 
 <div class="py-5">
@@ -47,17 +62,22 @@ ob_start();
                 </div>
             </div>
 
-            <div class="row collapse" id="order_client">
-                <div class="col-md-12">
-                    <?php $this->load->view("general/_vw_search_client", [
-                        "search_type" => "order",
-                        "account_type" =>
-                        $type == FUND_TYPE_EPF || $type == FUND_TYPE_PRS
-                            ? "non-wrap-personal"
-                            : "all",
-                    ]); ?>
+            <?php if (isset($_GET['clientcode']) && isset($_GET['iswrap']) && isset($_GET['si'])) { ?>
+                <!-- hide search if these are set -->
+            <?php } else { ?>
+                <div class="row collapse" id="order_client">
+                    <div class="col-md-12">
+                        <?php $this->load->view("general/_vw_search_client", [
+                            "search_type" => "order",
+                            "account_type" =>
+                            $type == FUND_TYPE_EPF || $type == FUND_TYPE_PRS
+                                ? "non-wrap-personal"
+                                : "all",
+                        ]); ?>
+                    </div>
                 </div>
-            </div>
+            <?php } ?>
+
         <?php } else { ?>
             <div class="row">
                 <div class="col-md-12">
@@ -291,6 +311,16 @@ ob_start();
         })
 
         calculate_payment_summary();
+
+        // if clientcode, iswrap, si is passed via url parameter
+        if (paramClientCode != null && paramIsWrap != null && paramSi != null && window.select_client_handle !== undefined) {
+            var element = $('<div></div>', {
+                'data-iswrap': paramIsWrap,
+                'data-si': paramSi,
+                'data-clientcode': paramClientCode
+            })
+            select_client_handle(element);
+        }
     });
 
     function submit_password(password) {

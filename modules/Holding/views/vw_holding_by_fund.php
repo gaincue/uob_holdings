@@ -13,7 +13,7 @@ $template = [
  */
 ob_start();
 ?>
-<div class="container-fluid mb-4">
+<div class="container-fluid holding holding-container mb-4">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
