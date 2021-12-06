@@ -1,0 +1,602 @@
+@font-face {
+  font-family: "Gill Sans";
+  src: url("/UnitTrustMYSIT/assets/fonts/Gill Sans.eot"); /* IE9 Compat Modes */
+  src: url("/UnitTrustMYSIT/assets/fonts/Gill Sans.eot?#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */
+      /* url('/UnitTrustMYSIT/assets/fonts/Gill Sans.woff2') format('woff2'), /* Super Modern Browsers */
+      url("/UnitTrustMYSIT/assets/fonts/Gill Sans.woff") format("woff"),
+    /* Pretty Modern Browsers */ url("/UnitTrustMYSIT/assets/fonts/Gill Sans.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */ url("/UnitTrustMYSIT/assets/fonts/Gill Sans.svg#svgFontName")
+      format("svg"); /* Legacy iOS */
+}
+
+*,
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: "Gill Sans", Fallback, sans-serif;
+}
+
+.slt-switch-account {
+  outline: none;
+  border-radius: 0px;
+  background: transparent;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  text-align: right;
+  text-align-last: right;
+}
+
+.div-switch-account {
+  position: relative;
+}
+
+.div-switch-account::before {
+  color: #000;
+  content: "Click to change account";
+  padding: 5px;
+  position: absolute;
+  background-color: #fff;
+  display: none;
+  top: 100%;
+  right: 0;
+  line-height: initial;
+  border-radius: 4px;
+  box-shadow: 0 0 3px #999;
+}
+
+.div-switch-account:hover::before {
+  display: block;
+}
+
+.slt-switch-account option {
+  color: #000;
+}
+
+.footer-distributed {
+  background-color: #292c2f;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  width: 100%;
+  text-align: left;
+  font: bold 14px sans-serif;
+  padding: 40px 50px;
+}
+
+.footer-distributed .footer-left,
+.footer-distributed .footer-center,
+.footer-distributed .footer-right {
+  display: inline-block;
+  vertical-align: top;
+}
+
+/* Footer left */
+
+.footer-distributed .footer-left {
+  width: 40%;
+}
+
+/* The company logo */
+
+.footer-distributed h3 {
+  color: #ffffff;
+  font: normal 36px "Cookie", cursive;
+  margin: 0;
+}
+
+.footer-distributed h3 span {
+  color: #5383d3;
+}
+
+/* Footer links */
+
+.footer-distributed .footer-links {
+  color: #ffffff;
+  margin: 20px 0 12px;
+  padding: 0;
+}
+
+.footer-distributed .footer-links a {
+  display: inline-block;
+  line-height: 1.8;
+  text-decoration: none;
+  color: inherit;
+}
+
+.footer-distributed .footer-company-name {
+  color: #8f9296;
+  font-size: 14px;
+  font-weight: normal;
+  margin: 0;
+}
+
+/* Footer Center */
+
+.footer-distributed .footer-center {
+  width: 30%;
+}
+
+.footer-distributed .footer-center i {
+  background-color: #33383b;
+  color: #ffffff;
+  font-size: 25px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 42px;
+  margin: 10px 15px;
+  vertical-align: middle;
+}
+
+.footer-distributed .footer-center p {
+  display: inline-block;
+  color: #ffffff;
+  vertical-align: middle;
+  margin: 0;
+}
+
+.footer-distributed .footer-center p span {
+  display: block;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 2;
+}
+
+.footer-distributed .footer-center p a {
+  color: #5383d3;
+  text-decoration: none;
+}
+
+/* Footer Right */
+.footer-distributed .footer-right {
+  width: 25%;
+}
+
+.footer-distributed .footer-right i {
+  background-color: #33383b;
+  color: #ffffff;
+  font-size: 25px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 42px;
+  margin: 10px 15px;
+  vertical-align: middle;
+}
+
+.footer-distributed .footer-right .title {
+  display: inline-block;
+  color: #ffffff;
+  vertical-align: middle;
+  margin: 0;
+  padding-bottom: 1px;
+}
+
+.footer-distributed .footer-right p {
+  display: inline-block;
+  color: #92999f;
+  vertical-align: middle;
+  margin: 0;
+}
+
+.footer-distributed .footer-company-about {
+  line-height: 20px;
+  color: #92999f;
+  font-size: 13px;
+  font-weight: normal;
+  margin: 0;
+}
+
+.footer-distributed .footer-company-about span {
+  display: block;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.footer-distributed .footer-icons {
+  margin-top: 25px;
+}
+
+.footer-distributed .footer-icons a {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  background-color: #33383b;
+  border-radius: 2px;
+
+  font-size: 20px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 35px;
+
+  margin-right: 3px;
+  margin-bottom: 5px;
+}
+
+.dashboard {
+  margin-top: 30px;
+  margin-left: 5%;
+  margin-right: 5%;
+  padding-bottom: 30px;
+}
+
+.dashboard a {
+  color: #0056b3;
+}
+
+.dashboard .btn-primary {
+  background-color: #c33b32;
+  border: 2px solid #c33b32;
+}
+
+.dashboard_short {
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: 5%;
+  width: 50%;
+  margin-right: auto;
+}
+
+.card-header {
+  background: #c33b32;
+  color: white;
+}
+
+.table-option {
+  margin-top: 30px;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.table-option a {
+  color: #c33b32;
+}
+
+.nav-tabs a {
+  color: #c33b32;
+}
+
+.table-title {
+  margin-left: auto;
+  margin-right: 5%;
+  width: 88%;
+  margin-right: auto;
+}
+
+a {
+  color: #0056b3;
+}
+
+.btn-link {
+  color: #c33b32 !important;
+}
+
+.btn-danger {
+  color: white;
+}
+
+.bg-image-full {
+  background-position: center center;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  color: black;
+}
+
+.mx-background-top-linear {
+  background: -webkit-linear-gradient(45deg, #ffffff 30%, #c33b32 30%);
+  background: -webkit-linear-gradient(left, #ffffff 30%, #c33b32 30%);
+  background: linear-gradient(45deg, #ffffff 30%, #c33b32 30%);
+}
+.ml-auto .dropdown-menu {
+  left: auto !important;
+  right: 0px;
+}
+.navbar {
+  border-bottom: 2px solid #c33b32;
+}
+
+.nav-1 {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.nav-1 > div {
+  display: flex;
+  width: 100%;
+  color: #fff;
+  height: 25px;
+  align-items: center;
+}
+
+.nav-1 .dropdown .dropdown-menu,
+.nav-2 .dropdown .dropdown-menu {
+  margin-top: 0;
+}
+
+.nav-1 .dropdown:hover .dropdown-menu,
+.nav-1 .dropdown .dropdown-menu:hover,
+.nav-2 .dropdown:hover .dropdown-menu,
+.nav-2 .dropdown .dropdown-menu:hover {
+  display: block;
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s, opacity 0.3s linear;
+}
+
+.nav-2 .navbar-nav .nav-item .nav-link {
+  margin: 0 10px;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.nav-1 .dropdown-item:focus,
+.nav-1 .dropdown-item:hover,
+.nav-1 .dropdown-item.active,
+.nav-2 .dropdown-item:focus,
+.nav-2 .dropdown-item:hover,
+.nav-2 .dropdown-item.active {
+  color: white;
+  text-decoration: none;
+  background-color: #c33b32;
+}
+
+.nav-2 h4.dropdown-item:focus,
+.nav-2 h4.dropdown-item:hover,
+.nav-2 h4.dropdown-item.active {
+  background-color: transparent;
+}
+
+.nav-2 .navbar-nav .nav-item:hover .nav-link,
+.nav-2 .navbar-nav .nav-item:active .nav-link {
+  font-size: 18px;
+}
+
+.nav-2 .navbar-nav .nav-item .nav-link.show,
+.nav-2 .navbar-nav .nav-item.show .nav-link,
+.nav-2 .navbar-nav .nav-item.active .nav-link,
+.nav-2 .navbar-nav .nav-item .nav-link.active {
+  color: #fff;
+  background-color: black;
+}
+ul.navbar-nav > li:hover:hover {
+  cursor: pointer;
+}
+.mega-menu {
+  display: flex;
+}
+.mega-menu > div {
+  width: 100%;
+}
+
+.div-body {
+  margin-top: 157px;
+  min-height: 400px;
+}
+
+.dataTable.DTFC_Cloned {
+  background-color: #fff;
+}
+
+/* If you don't want the footer to be responsive, remove these media queries */
+@media only screen and (max-width: 991px) {
+  .footer-distributed {
+    font: bold 14px sans-serif;
+  }
+
+  .footer-distributed .footer-left,
+  .footer-distributed .footer-center,
+  .footer-distributed .footer-right {
+    display: block;
+    width: 100%;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .footer-distributed .footer-center i {
+    margin-left: 0;
+  }
+  .mx-background-top-linear {
+    background: -webkit-linear-gradient(90deg, #ffffff 50%, #c33b32 50%);
+    background: -webkit-linear-gradient(left, #ffffff 50%, #c33b32 50%);
+    background: linear-gradient(90deg, #ffffff 50%, #c33b32 50%);
+  }
+
+  .nav-2 .navbar-nav .nav-item .nav-link {
+    color: black;
+    font-weight: bold;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 0;
+  }
+  .nav-2 .navbar-nav .nav-item:hover .nav-link,
+  .nav-2 .navbar-nav .nav-item:active .nav-link {
+    color: #000;
+  }
+  .nav-2 .navbar-nav .nav-item .nav-link.show,
+  .nav-2 .navbar-nav .nav-item.show .nav-link,
+  .nav-2 .navbar-nav .nav-item.active .nav-link,
+  .nav-2 .navbar-nav .nav-item .nav-link.active {
+    color: #fff;
+  }
+  .navbar .dropdown .nav-link:active ~ .dropdown-menu,
+  .navbar .dropdown .nav-link:focus ~ .dropdown-menu {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s, opacity 0.3s linear;
+  }
+  .nav-2 .dropdown-menu {
+    position: absolute;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  .mega-menu {
+    display: block;
+  }
+}
+
+/* go to top botton */
+#goTopBtn {
+  z-index: 100;
+  display: inline-block;
+  background-color: #d12a3c;
+  width: 45px;
+  height: 45px;
+  border-radius: 2px;
+  text-align: center;
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  transition: background-color 0.3s, opacity 0.5s, visibility 0.5s;
+  opacity: 0;
+  visibility: hidden;
+}
+
+#goTopBtn::after {
+  content: "\f077";
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 1.4em;
+  line-height: 45px;
+  color: #ffffff;
+}
+
+#goTopBtn:hover {
+  cursor: pointer;
+  opacity: 1 !important;
+  background-color: #d12a3c;
+}
+
+#goTopBtn:active {
+  background-color: #d12a3c;
+}
+
+#goTopBtn.show {
+  opacity: 0.5;
+  visibility: visible;
+}
+
+select.decorated option {
+  background-color: #fff;
+}
+
+select.decorated option:hover {
+  box-shadow: 0 0 10px 100px #007bff inset;
+}
+
+.form-control-error {
+  border-color: red !important;
+  box-shadow: 0 0 1.5px red !important;
+}
+
+@media only screen and (max-width: 767px) {
+  .nav-1.nav-client > div {
+    display: block;
+    min-height: 25px;
+    height: auto;
+  }
+
+  .nav-greeting {
+    display: none;
+  }
+
+  #a-logout {
+    position: absolute;
+    top: -10px;
+    right: 10px;
+  }
+
+  .nav-1.nav-client #a-logout {
+    top: -20px;
+  }
+}
+
+/*form uploading*/
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px #cccccc;
+  width: 100%;
+  max-height: 200px;
+  overflow: auto;
+  border: 1px solid #ddd;
+  z-index: 1;
+}
+
+.dropdown-content > a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content > a:hover {
+  background-color: #dddddd;
+  cursor: pointer;
+}
+
+.dropdown-content.show {
+  display: block;
+}
+
+/* jquery datepicker */
+.ui-datepicker {
+  width: auto;
+}
+.ui-datepicker .ui-datepicker-prev,
+.ui-datepicker .ui-datepicker-next {
+  bottom: 2px;
+  height: auto;
+}
+.ui-datepicker select.ui-datepicker-month,
+.ui-datepicker select.ui-datepicker-year {
+  border: none;
+  padding: 5px;
+  margin: auto 2px;
+}
+.ui-datepicker td span,
+.ui-datepicker td a {
+  text-align: center;
+  padding: 0;
+}
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default,
+.ui-button,
+html .ui-button.ui-state-disabled:hover,
+html .ui-button.ui-state-disabled:active {
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  border: none;
+}
+
+.ui-datepicker.ui-monthpicker-div {
+  width: 300px;
+}
+.ui-datepicker.ui-monthpicker-div .ui-datepicker-calendar,
+.ui-datepicker.ui-monthpicker-div .ui-datepicker-current {
+  display: none;
+}
