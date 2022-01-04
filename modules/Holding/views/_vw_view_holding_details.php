@@ -1172,7 +1172,7 @@ ob_start();
             // need to expand every account holders
             $('.applicants--collapse').each(function() {
                 if (!$(this).hasClass('show')) {
-                    $(this).collapse('show')
+                    $(this).collapse(false)
                 }
             })
 
@@ -1806,10 +1806,16 @@ ob_start();
                             chart_geographical_data = generatePieChartData(chart_geographical_data, titleCase(i['geographical_allocation'] || "Others"), unit);
                             // pie chart data
 
+                            // create direct link to fund fact sheet
+                            let fundNameCol = titleCase(i['fund_name'] || "-")
+                            if (i['fund_id'] != null) {
+                                fundNameCol = `<a target="_blank" href="/UnitTrustGaincue/fund_factsheet?fund=${i['fund_id']}">${titleCase(i['fund_name'] || "-")}</a>`
+                            }
+
                             // performance table data
                             // absolute fund tbl
                             absolute_fund_tbl.row.add([
-                                titleCase(i['fund_name'] || "-"),
+                                fundNameCol,
                                 (parseFloat(i['latest_nav']).toFixed(4) || "-"),
                                 i['m_portfolio_perc'],
                                 displayAmount(i.performance_type_return, '1 Month'),
@@ -1823,7 +1829,7 @@ ob_start();
                             ]);
 
                             annual_fund_tbl.row.add([
-                                titleCase(i['fund_name'] || "-"),
+                                fundNameCol,
                                 (parseFloat(i['latest_nav']).toFixed(4) || "-"),
                                 i['m_portfolio_perc'],
                                 displayAmount(i.performance_type_calendar_year_return, '1 Year'),
@@ -1985,9 +1991,15 @@ ob_start();
             (addCommaToNumber(parseFloat(data[currency_myr ? 'm_profit_perc' : 'profit_perc']) || 0))}</span>`
         }
 
+        // create direct link to fund fact sheet
+        let fundNameCol = titleCase(data['fund_name'] || "-")
+        if (data['fund_id'] != null) {
+            fundNameCol = `<a target="_blank" href="/UnitTrustGaincue/fund_factsheet?fund=${data['fund_id']}">${titleCase(data['fund_name'] || "-")}</a>`
+        }
+
         return [
             data['group'],
-            titleCase(data['fund_name'] || "-"),
+            fundNameCol,
             data['payment_method'],
             data['inception_date'] ? data['inception_date'].substring(0, 10) : "-",
             (addCommaToNumber(parseFloat(data['unit']) || 0)),
@@ -2206,9 +2218,14 @@ ob_start();
                 amount += "</ul>";
             }
 
+            let fundNameCol = titleCase(item['fund_name'] || "-")
+            if (item['fund_id'] != null) {
+                fundNameCol = `<a target="_blank" href="/UnitTrustGaincue/fund_factsheet?fund=${item['fund_id']}">${titleCase(item['fund_name'] || "-")}</a>`
+            }
+
             tbl.row.add([
                 (item['order_type_name'] || "-"),
-                fund_name,
+                fundNameCol,
                 (item['submission_date'] || item['order_date'] || "-"),
                 amount,
                 charge,

@@ -13,39 +13,56 @@ $template = [
  */
 ob_start();
 ?>
+
+<!-- custom params to quick access fund -->
+<?php if (isset($_GET['fund'])) { ?>
+    <script>
+        var paramFund = "<?php echo $_GET['fund']; ?>"
+    </script>
+<?php } else { ?>
+    <script>
+        var paramFund = null
+    </script>
+<?php } ?>
+
 <a id="goTopBtn"></a>
 
 <div class="py-5">
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header"><b>Search Fund</b></div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-2"><label for="slt-fund-house" class="col-form-label"><b>Fund House</b></label></div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <select class="form-control" id="slt-fund-house">
-                                        <option value="">Select Fund House</option>
-                                    </select>
+        <?php if (isset($_GET['fund'])) { ?>
+            <!-- hide search if fund is set -->
+        <?php } else { ?>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header"><b>Search Fund</b></div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-2"><label for="slt-fund-house" class="col-form-label"><b>Fund House</b></label></div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <select class="form-control" id="slt-fund-house">
+                                            <option value="">Select Fund House</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2"><label for="slt-fund" class="col-form-label"><b>Fund Name</b></label></div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <select id="slt-fund" class="form-control">
-                                        <option value="">Select Fund Name</option>
-                                    </select>
+                            <div class="row">
+                                <div class="col-md-2"><label for="slt-fund" class="col-form-label"><b>Fund Name</b></label></div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <select id="slt-fund" class="form-control">
+                                            <option value="">Select Fund Name</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        <?php } ?>
+       
         <div class="row pt-4 collapse" id="div-factsheet">
             <div class="col-md-12">
 
@@ -777,6 +794,10 @@ ob_start();
 
         });
 
+        if (paramFund != null) {
+            getFundDetail(paramFund);
+        }
+        
     });
 
     function getFundList(fund_house, completion) {
