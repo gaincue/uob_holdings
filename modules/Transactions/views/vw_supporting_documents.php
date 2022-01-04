@@ -15,19 +15,24 @@ ob_start();
 ?>
 
 <!-- custom params to quick access user -->
-<?php if (isset($_GET['clientcode']) && isset($_GET['iswrap']) && isset($_GET['si'])) { ?>
+<?php if (isset($_GET['clientcode']) && isset($_GET['iswrap']) && isset($_GET['si']) && isset($_GET['clientname']) && isset($_GET['clienttype'])) { ?>
     <script>
         var paramClientCode = "<?php echo $_GET['clientcode']; ?>"
         var paramIsWrap = "<?php echo $_GET['iswrap']; ?>"
         var paramSi = "<?php echo $_GET['si']; ?>"
+        var paramClientName = "<?php echo $_GET['clientname']; ?>"
+        var paramClientType = "<?php echo $_GET['clienttype']; ?>"
     </script>
 <?php } else { ?>
     <script>
         var paramClientCode = null
         var paramIsWrap = null
         var paramSi = null
+        var paramClientName = null
+        var paramClientType = null
     </script>
 <?php } ?>
+
 
 <div class="py-5">
     <div class="container">
@@ -44,8 +49,60 @@ ob_start();
             </div>
         </div>
 
-        <?php if (isset($_GET['clientcode']) && isset($_GET['iswrap']) && isset($_GET['si'])) { ?>
+        <?php if (isset($_GET['clientcode']) && isset($_GET['iswrap']) && isset($_GET['si']) && isset($_GET['clientname']) && isset($_GET['clienttype'])) { ?>
             <!-- hide search if these are set -->
+            <div class="pt-2 collapse show" id="div-client-information-preload">
+                <div class="card">
+                    <div class="card-header"><b>Client Information</b></div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label class="col-form-label">
+                                    <b>Account No</b>
+                                </label>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="col-form-label">
+                                    <div id="client_acc_num">
+                                        <?php echo $_GET['clientcode']; ?>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="col-form-label">
+                                    <b>Client Name</b>
+                                </label>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="col-form-label">
+                                    <div id="client_name">
+                                        <?php echo urldecode($_GET['clientname']); ?>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label class="col-form-label"><b>Account Type</b></label>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="col-form-label">
+                                    <div id="client_acc_type">
+                                        <?php
+                                        if ($_GET['iswrap'] == 1) {
+                                            echo "Wrap ", $_GET['clienttype'];
+                                        } else {
+                                            echo $_GET['clienttype'];
+                                        }
+                                        ?>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="col-md-6"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         <?php } else { ?>
             <div class="row collapse" id="div-client">
                 <div class="col-md-12">

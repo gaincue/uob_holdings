@@ -326,6 +326,8 @@ ob_start();
                             var clientcode = client_elements['client_code']
                             var iswrap = client_elements['is_wrap']
                             var si = client_elements['si'] == 1 ? "1" : "0"
+                            var clienttype = client_elements['clnt_type_description']
+                            var clientname = encodeURIComponent(client_elements['client_name'])
 
                             // holding dropdown
                             var holding_wrapper =
@@ -376,13 +378,13 @@ ob_start();
                                         <ul class="dropdown-menu">
                                             <a class="dropdown-item" 
                                                 onclick="manualStopPropagation();"
-                                                href="/UnitTrustGaincue/transaction/buy?clientcode=${clientcode}&iswrap=${iswrap}&si=${si}">Buy Transaction</a>
+                                                href="/UnitTrustGaincue/transaction/buy?clientcode=${clientcode}&iswrap=${iswrap}&si=${si}&clientname=${clientname}&clienttype=${clienttype}">Buy Transaction</a>
                                             <a class="dropdown-item"  
                                                 onclick="manualStopPropagation();"
-                                                href="/UnitTrustGaincue/transaction/buy_prs?clientcode=${clientcode}&iswrap=${iswrap}&si=${si}">Buy PRS Transaction</a>
+                                                href="/UnitTrustGaincue/transaction/buy_prs?clientcode=${clientcode}&iswrap=${iswrap}&si=${si}&clientname=${clientname}&clienttype=${clienttype}">Buy PRS Transaction</a>
                                             <a class="dropdown-item" 
                                                 onclick="manualStopPropagation();"
-                                                href="/UnitTrustGaincue/transaction/buy_epf?clientcode=${clientcode}&iswrap=${iswrap}&si=${si}">Buy EPF Transaction</a>
+                                                href="/UnitTrustGaincue/transaction/buy_epf?clientcode=${clientcode}&iswrap=${iswrap}&si=${si}&clientname=${clientname}&clienttype=${clienttype}">Buy EPF Transaction</a>
                                         </ul>
                                     </li>
                                     <li class="dropdown-submenu">
@@ -395,13 +397,13 @@ ob_start();
                                         <ul class="dropdown-menu">
                                             <a class="dropdown-item" 
                                                 onclick="manualStopPropagation();"
-                                                href="/UnitTrustGaincue/transaction/sell?clientcode=${clientcode}&iswrap=${iswrap}&si=${si}">Sell Transaction</a>
+                                                href="/UnitTrustGaincue/transaction/sell?clientcode=${clientcode}&iswrap=${iswrap}&si=${si}&clientname=${clientname}&clienttype=${clienttype}">Sell Transaction</a>
                                             <a class="dropdown-item" 
                                                 onclick="manualStopPropagation();"
-                                                href="/UnitTrustGaincue/transaction/sell_prs?clientcode=${clientcode}&iswrap=${iswrap}&si=${si}">Sell PRS Transaction</a>
+                                                href="/UnitTrustGaincue/transaction/sell_prs?clientcode=${clientcode}&iswrap=${iswrap}&si=${si}&clientname=${clientname}&clienttype=${clienttype}">Sell PRS Transaction</a>
                                             <a class="dropdown-item" 
                                                 onclick="manualStopPropagation();"
-                                                href="/UnitTrustGaincue/transaction/sell_epf?clientcode=${clientcode}&iswrap=${iswrap}&si=${si}">Sell EPF Transaction</a>
+                                                href="/UnitTrustGaincue/transaction/sell_epf?clientcode=${clientcode}&iswrap=${iswrap}&si=${si}&clientname=${clientname}&clienttype=${clienttype}">Sell EPF Transaction</a>
                                         </ul>
                                     </li>
                                     <li class="dropdown-submenu">
@@ -414,10 +416,10 @@ ob_start();
                                         <ul class="dropdown-menu">
                                             <a class="dropdown-item" 
                                                 onclick="manualStopPropagation();"
-                                                href="/UnitTrustGaincue/transaction/inter_switch?clientcode=${clientcode}&iswrap=${iswrap}&si=${si}">Inter Switch Transaction</a>
+                                                href="/UnitTrustGaincue/transaction/inter_switch?clientcode=${clientcode}&iswrap=${iswrap}&si=${si}&clientname=${clientname}&clienttype=${clienttype}">Inter Switch Transaction</a>
                                             <a class="dropdown-item" 
                                                 onclick="manualStopPropagation();"
-                                                href="/UnitTrustGaincue/transaction/intra_switch?clientcode=${clientcode}&iswrap=${iswrap}&si=${si}">Intra Switch Transaction</a>
+                                                href="/UnitTrustGaincue/transaction/intra_switch?clientcode=${clientcode}&iswrap=${iswrap}&si=${si}&clientname=${clientname}&clienttype=${clienttype}">Intra Switch Transaction</a>
                                         </ul>
                                     </li>
                                     <li class="dropdown-submenu">
@@ -430,13 +432,13 @@ ob_start();
                                         <ul class="dropdown-menu">
                                             <a class="dropdown-item" 
                                                 onclick="manualStopPropagation();"
-                                                href="/UnitTrustGaincue/cash_deposit?clientcode=${clientcode}&iswrap=${iswrap}&si=${si}">Cash Deposit</a>
+                                                href="/UnitTrustGaincue/cash_deposit?clientcode=${clientcode}&iswrap=${iswrap}&si=${si}&clientname=${clientname}&clienttype=${clienttype}">Cash Deposit</a>
                                             <a class="dropdown-item" 
                                                 onclick="manualStopPropagation();"
-                                                href="/UnitTrustGaincue/cash_withdrawal?clientcode=${clientcode}&iswrap=${iswrap}&si=${si}">Cash Withdrawal</a>
+                                                href="/UnitTrustGaincue/cash_withdrawal?clientcode=${clientcode}&iswrap=${iswrap}&si=${si}&clientname=${clientname}&clienttype=${clienttype}">Cash Withdrawal</a>
                                             <a class="dropdown-item" 
                                                 onclick="manualStopPropagation();"
-                                                href="/UnitTrustGaincue/transaction/supporting_document/bfe?clientcode=${clientcode}&iswrap=${iswrap}&si=${si}">Upload Documents</a>
+                                                href="/UnitTrustGaincue/transaction/supporting_document/bfe?clientcode=${clientcode}&iswrap=${iswrap}&si=${si}&clientname=${clientname}&clienttype=${clienttype}">Upload Documents</a>
                                         </ul>
                                     </li>
                                 </ul>
