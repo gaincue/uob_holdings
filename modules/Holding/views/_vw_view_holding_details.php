@@ -1028,10 +1028,11 @@ ob_start();
 
                 </div>
             </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" id="btn_print" class="btn btn-danger">Print</button>
-            <button type="button" class="btn btn-secondary" id="btn_close" data-dismiss="modal">Close</button>
+
+            <div class="modal-footer">
+                <button type="button" id="btn_print" class="btn btn-danger">Print</button>
+                <button type="button" class="btn btn-secondary" id="btn_close" data-dismiss="modal">Close</button>
+            </div>
         </div>
     </div>
 </div>
@@ -1166,11 +1167,21 @@ ob_start();
             document.getElementById("btn_dismiss_client_summary").style.display = "none";
             document.getElementById("btn_print").style.display = "none";
             document.getElementById("btn_close").style.display = "none";
+            $(".holding--accordion_toggle").css('display', 'none')
+
+            // need to expand every account holders
+            $('.applicants--collapse').each(function() {
+                if (!$(this).hasClass('show')) {
+                    $(this).collapse('show')
+                }
+            })
+
             var divToPrint = $("#modal_client_info .modal-body");
             printHtml(divToPrint.html());
             document.getElementById("btn_dismiss_client_summary").style.display = "block";
             document.getElementById("btn_print").style.display = "block";
             document.getElementById("btn_close").style.display = "block";
+            $(".holding--accordion_toggle").css('display', 'flex')
         });
 
         $("#btn_new_tracking").on("click", function() {
@@ -2704,7 +2715,7 @@ ob_start();
 
                                 let accordionContent = $('<div/>')
                                 accordionContent.attr('id', `applicant${index}`)
-                                accordionContent.addClass('collapse')
+                                accordionContent.addClass('collapse applicants--collapse')
                                 accordionContent.css('padding', '0 32px 32px 32px')
                                 accordionContent.append(clone);
                                 clone.show();
