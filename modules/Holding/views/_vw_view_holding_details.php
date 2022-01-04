@@ -1809,7 +1809,7 @@ ob_start();
                             // create direct link to fund fact sheet
                             let fundNameCol = titleCase(i['fund_name'] || "-")
                             if (i['fund_id'] != null) {
-                                fundNameCol = `<a target="_blank" href="/UnitTrustGaincue/fund_factsheet?fund=${i['fund_id']}">${titleCase(i['fund_name'] || "-")}</a>`
+                                fundNameCol = `<a target="_blank" href="<?= base_url() ?>fund_factsheet?fund=${i['fund_id']}">${titleCase(i['fund_name'] || "-")}</a>`
                             }
 
                             // performance table data
@@ -1994,7 +1994,7 @@ ob_start();
         // create direct link to fund fact sheet
         let fundNameCol = titleCase(data['fund_name'] || "-")
         if (data['fund_id'] != null) {
-            fundNameCol = `<a target="_blank" href="/UnitTrustGaincue/fund_factsheet?fund=${data['fund_id']}">${titleCase(data['fund_name'] || "-")}</a>`
+            fundNameCol = `<a target="_blank" href="<?= base_url() ?>fund_factsheet?fund=${data['fund_id']}">${titleCase(data['fund_name'] || "-")}</a>`
         }
 
         return [
@@ -2220,7 +2220,7 @@ ob_start();
 
             let fundNameCol = titleCase(item['fund_name'] || "-")
             if (item['fund_id'] != null) {
-                fundNameCol = `<a target="_blank" href="/UnitTrustGaincue/fund_factsheet?fund=${item['fund_id']}">${titleCase(item['fund_name'] || "-")}</a>`
+                fundNameCol = `<a target="_blank" href="<?= base_url() ?>fund_factsheet?fund=${item['fund_id']}">${titleCase(item['fund_name'] || "-")}</a>`
             }
 
             tbl.row.add([
