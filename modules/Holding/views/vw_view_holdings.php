@@ -377,12 +377,15 @@ ob_start();
                                         </a>
                                         <ul class="dropdown-menu">
                                             <a class="dropdown-item" 
+                                                target="_blank"
                                                 onclick="manualStopPropagation();"
                                                 href="/UnitTrustGaincue/transaction/buy?clientcode=${clientcode}&iswrap=${iswrap}&si=${si}&clientname=${clientname}&clienttype=${clienttype}">Buy Transaction</a>
                                             <a class="dropdown-item"  
+                                                target="_blank"
                                                 onclick="manualStopPropagation();"
                                                 href="/UnitTrustGaincue/transaction/buy_prs?clientcode=${clientcode}&iswrap=${iswrap}&si=${si}&clientname=${clientname}&clienttype=${clienttype}">Buy PRS Transaction</a>
                                             <a class="dropdown-item" 
+                                                target="_blank"
                                                 onclick="manualStopPropagation();"
                                                 href="/UnitTrustGaincue/transaction/buy_epf?clientcode=${clientcode}&iswrap=${iswrap}&si=${si}&clientname=${clientname}&clienttype=${clienttype}">Buy EPF Transaction</a>
                                         </ul>
@@ -396,12 +399,15 @@ ob_start();
                                         </a>
                                         <ul class="dropdown-menu">
                                             <a class="dropdown-item" 
+                                                target="_blank"
                                                 onclick="manualStopPropagation();"
                                                 href="/UnitTrustGaincue/transaction/sell?clientcode=${clientcode}&iswrap=${iswrap}&si=${si}&clientname=${clientname}&clienttype=${clienttype}">Sell Transaction</a>
                                             <a class="dropdown-item" 
+                                                target="_blank"
                                                 onclick="manualStopPropagation();"
                                                 href="/UnitTrustGaincue/transaction/sell_prs?clientcode=${clientcode}&iswrap=${iswrap}&si=${si}&clientname=${clientname}&clienttype=${clienttype}">Sell PRS Transaction</a>
                                             <a class="dropdown-item" 
+                                                target="_blank"
                                                 onclick="manualStopPropagation();"
                                                 href="/UnitTrustGaincue/transaction/sell_epf?clientcode=${clientcode}&iswrap=${iswrap}&si=${si}&clientname=${clientname}&clienttype=${clienttype}">Sell EPF Transaction</a>
                                         </ul>
@@ -415,9 +421,11 @@ ob_start();
                                         </a>
                                         <ul class="dropdown-menu">
                                             <a class="dropdown-item" 
+                                                target="_blank"
                                                 onclick="manualStopPropagation();"
                                                 href="/UnitTrustGaincue/transaction/inter_switch?clientcode=${clientcode}&iswrap=${iswrap}&si=${si}&clientname=${clientname}&clienttype=${clienttype}">Inter Switch Transaction</a>
                                             <a class="dropdown-item" 
+                                                target="_blank"
                                                 onclick="manualStopPropagation();"
                                                 href="/UnitTrustGaincue/transaction/intra_switch?clientcode=${clientcode}&iswrap=${iswrap}&si=${si}&clientname=${clientname}&clienttype=${clienttype}">Intra Switch Transaction</a>
                                         </ul>
@@ -431,12 +439,15 @@ ob_start();
                                         </a>
                                         <ul class="dropdown-menu">
                                             <a class="dropdown-item" 
+                                                target="_blank"
                                                 onclick="manualStopPropagation();"
                                                 href="/UnitTrustGaincue/cash_deposit?clientcode=${clientcode}&iswrap=${iswrap}&si=${si}&clientname=${clientname}&clienttype=${clienttype}">Cash Deposit</a>
                                             <a class="dropdown-item" 
+                                                target="_blank"
                                                 onclick="manualStopPropagation();"
                                                 href="/UnitTrustGaincue/cash_withdrawal?clientcode=${clientcode}&iswrap=${iswrap}&si=${si}&clientname=${clientname}&clienttype=${clienttype}">Cash Withdrawal</a>
                                             <a class="dropdown-item" 
+                                                target="_blank"
                                                 onclick="manualStopPropagation();"
                                                 href="/UnitTrustGaincue/transaction/supporting_document/bfe?clientcode=${clientcode}&iswrap=${iswrap}&si=${si}&clientname=${clientname}&clienttype=${clienttype}">Upload Documents</a>
                                         </ul>
