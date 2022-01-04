@@ -41,11 +41,9 @@ ob_start();
         <div class="d-flex justify-content-between align-items-center holding--spacing">
             <h4 class="holding--title">Selected Client</h4>
             <div class="d-flex">
-                <!--
-                <div class="d-block">
-                    <button id="btn-export-excel" class="holding--pill active">Export</button>
+                <div class="d-block" style="margin-right: 12px;">
+                    <button id="btn-back-list" class="holding--pill active">Back</button>
                 </div>
-                -->
 
                 <div class="d-block">
                     <button id="btn-export-excel" class="holding--pill active">Export</button>
@@ -223,6 +221,23 @@ ob_start();
         });
 
         $("#client_holding_tbl .tr-delete").remove();
+
+        $('#btn-back-list').click(function() {
+            showLoading();
+
+            $("#div-client-list").collapse("show");
+
+            $('#div-selected-client').collapse('hide');
+            $("#portfolio_ut_prs").collapse("hide");
+            $("#SAF").collapse("hide");
+            $("#summary_tab").collapse("hide");
+            $("#cash_account").collapse("hide");
+
+            currentClientId = null;
+            currentClientIsWrap = null;
+
+            hideLoading();
+        });
 
         $('#btn-export-excel').click(function() {
             showLoading();
