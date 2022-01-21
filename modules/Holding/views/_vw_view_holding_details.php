@@ -875,11 +875,13 @@ ob_start();
                         <div class="col-md-3">
                             <h6 class="row-subtitle" id="summary_client_dob"></h6>
                         </div>
-                        <div class="col-md-3" style="display: none;">
-                            <h6 class="row-title">User Login</h6>
-                        </div>
-                        <div class="col-md-3" style="display: none;">
-                            <h6 class="row-subtitle" id="summary_client_user_id"></h6>
+                        <div class="row col-md-6" style="display: none; margin: 0; padding: 0;">
+                            <div class="col-md-6">
+                                <h6 class="row-title">User Login</h6>
+                            </div>
+                            <div class="col-md-6">
+                                <h6 class="row-subtitle" id="summary_client_user_id"></h6>
+                            </div>
                         </div>
                     </div>
 
@@ -2752,7 +2754,7 @@ ob_start();
                                 dob = '-';
                             }
                             $("#summary_client_dob").text(dob);
-                            $("#summary_client_nationality").text(title(client_json['nationality'] || "-"));
+                            $("#summary_client_nationality").text(titleCase(client_json['nationality'] || "-"));
                             $("#summary_client_race").text(client_json['race'] || "-");
                             $("#summary_client_epf_no").text(client_json['epf_no'] || "-");
                             $("#summary_client_ppa_no").text(client_json['ppa_no'] || "-");
