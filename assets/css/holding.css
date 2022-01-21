@@ -226,7 +226,7 @@ a.holding--pill:not([href]):not([tabindex]):hover {
   background-color: #f5f5fa;
 }
 
-.holding--bottom {
+.holding--bottom, .holding--top {
   width: 100%;
   display: flex;
   flex-direction: row;

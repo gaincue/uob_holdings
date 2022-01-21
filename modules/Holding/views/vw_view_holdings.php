@@ -192,7 +192,7 @@ ob_start();
             "searching": true, // Show Search
             "info": true, // Show Info
             "fixedHeader": false, // Fix header
-            "dom": 'rt<"holding--bottom"ipl><"clear">',
+            "dom": '<"holding--top"f>rt<"holding--bottom"ipl><"clear">',
             "columnDefs": [{
                 targets: [0, 1, 2],
                 className: 'mdl-data-table__cell--non-numeric'
