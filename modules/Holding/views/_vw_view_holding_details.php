@@ -64,12 +64,12 @@ ob_start();
                                         <th>Fund Name</th>
                                         <th>Investment Date</th>
                                         <th>Available Units</th>
-                                        <th>Weighted Average Cost (MYR)</th>
-                                        <th>Investment Amount (MYR)</th>
+                                        <th >Weighted <br>Average Cost (MYR)</th>
+                                        <th>Investment <br>Amount (MYR)</th>
                                         <th>NAV (MYR)</th>
                                         <th>NAV Date</th>
-                                        <th>Current Value (MYR)</th>
-                                        <th>Percentage of Portfolio (%)</th>
+                                        <th>Current <br>Value (MYR)</th>
+                                        <th>Percentage <br>of Portfolio (%)</th>
                                         <th>Profit (MYR)</th>
                                         <th>Profit&nbsp; (%)</th>
                                     </tr>
@@ -1872,7 +1872,7 @@ ob_start();
     }
 
     function drawFundByCurrencyTable(elem_div, funds, holding_total, grand_total) {
-        var elem_table = $('<table class="table holding--table" style="width: 100%"><thead><tr><th></th><th>Fund Name</th><th>Payment Method</th><th>Investment Date</th><th>Available Units</th><th>Weighted Average Cost</th><th>Investment Amount</th><th>NAV</th><th>NAV Date</th><th>Current Value</th><th>Percentage of Portfolio (%)</th><th>Profit</th><th>Profit&nbsp; (%)</th></tr></thead><tbody></tbody><tfoot></tfoot></table>');
+        var elem_table = $('<table class="table holding--table" style="width: 100%"><thead><tr><th></th><th>Fund Name</th><th>Investment Date</th><th>Available Units</th><th>Weighted <br>Average Cost</th><th>Investment <br>Amount</th><th>NAV</th><th>NAV Date</th><th>Current Value</th><th>Percentage <br>of Portfolio (%)</th><th>Profit</th><th>Profit&nbsp; (%)</th></tr></thead><tbody></tbody><tfoot></tfoot></table>');
         elem_div.append(elem_table);
         var datatableTable = elem_table.DataTable(dataTableSetting({
             "columnDefs": [{

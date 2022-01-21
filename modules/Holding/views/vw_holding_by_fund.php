@@ -49,12 +49,12 @@ ob_start();
                                         <th>Payment Method</th>
                                         <th>Investment Date</th>
                                         <th>Available Units</th>
-                                        <th>Weighted Average Cost (MYR)</th>
+                                        <th>Weighted <br>Average Cost (MYR)</th>
                                         <th>Investment Amount (MYR)</th>
                                         <th>NAV (MYR)</th>
                                         <th>NAV Date</th>
                                         <th>Current Value (MYR)</th>
-                                        <th>Percentage of Portfolio (%)</th>
+                                        <th>Percentage <br>of Portfolio (%)</th>
                                         <th>Profit (MYR)</th>
                                         <th>Profit&nbsp; (%)</th>
                                     </tr>
