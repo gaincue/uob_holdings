@@ -62,7 +62,6 @@ ob_start();
                                     <tr>
                                         <th></th>
                                         <th>Fund Name</th>
-                                        <th>Payment Method</th>
                                         <th>Investment Date</th>
                                         <th>Available Units</th>
                                         <th>Weighted Average Cost (MYR)</th>
@@ -2000,7 +1999,6 @@ ob_start();
         return [
             data['group'],
             fundNameCol,
-            data['payment_method'],
             data['inception_date'] ? data['inception_date'].substring(0, 10) : "-",
             (addCommaToNumber(parseFloat(data['unit']) || 0)),
             (addCommaToNumber(parseFloat(data[currency_myr ? 'm_average_nav' : 'average_nav']) || 0, 4)),
@@ -2093,7 +2091,6 @@ ob_start();
 
         return '<tr>' +
             '<th>' + data['name'] + '</th>' +
-            '<th>' + data['payment_method'] + '</th>' +
             '<th>-</th>' +
             '<th>-</th>' +
             '<th>-</th>' +
